@@ -1,0 +1,3617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GJW Creator Hub — New Influencer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gjw:#f5a623;
+  --gjw-blue:#1a73d4;
+  --bg:#f9f9f9;
+  --white:#fff;
+  --ink:#1a1a1a;
+  --ink2:#444;
+  --ink3:#777;
+  --ink4:#aaa;
+  --border:#e8e8e8;
+  --border2:#d4d4d4;
+  --f:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* ── GJW TOPNAV ── */
+.topnav{
+  height:52px;background:var(--white);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;position:sticky;top:0;z-index:200;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.nav-left{display:flex;align-items:center;gap:10px}
+.hamburger{display:flex;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.hamburger span{width:18px;height:2px;background:var(--ink3);border-radius:2px;display:block}
+.gjw-logo{display:flex;align-items:center;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:8px}
+.nav-link{padding:6px 12px;font-size:13px;color:var(--ink2);cursor:pointer;border-radius:6px;font-weight:500;transition:background .14s;white-space:nowrap}
+.nav-link:hover{background:var(--bg)}
+.nav-link.has-arrow{display:flex;align-items:center;gap:4px}
+.nav-link.has-arrow::after{content:'▾';font-size:9px;color:var(--ink4)}
+.nav-center{flex:1;max-width:420px;margin:0 16px}
+.search-bar{display:flex;align-items:center;background:var(--bg);border:1px solid var(--border2);border-radius:24px;padding:0 14px;height:34px;gap:8px;transition:border-color .15s}
+.search-bar:focus-within{border-color:#1a73d4;background:var(--white)}
+.search-bar input{border:none;background:transparent;font-family:var(--f);font-size:13px;color:var(--ink);outline:none;flex:1}
+.search-bar input::placeholder{color:var(--ink4)}
+.nav-right{display:flex;align-items:center;gap:6px}
+.nav-icon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .14s}
+.nav-icon:hover{background:var(--bg)}
+.nav-icon svg{opacity:.6}
+.btn-sub{padding:7px 14px;border:1.5px solid var(--ink);border-radius:6px;font-family:var(--f);font-size:13px;font-weight:500;color:var(--ink);background:transparent;cursor:pointer;transition:all .14s;white-space:nowrap}
+.btn-sub:hover{background:var(--ink);color:var(--white)}
+.btn-sign{padding:7px 14px;border:none;border-radius:6px;font-family:var(--f);font-size:13px;font-weight:600;color:var(--white);background:#1a73d4;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background .14s}
+.btn-sign:hover{background:#1560b8}
+
+/* hide desktop-only nav items on mobile */
+@media(max-width:640px){
+  .nav-links,.nav-center,.btn-sub{display:none}
+  .topnav{padding:0 14px}
+}
+
+/* ── CHANNEL COVER ── */
+.channel-cover{width:100%;height:180px;background:#111;overflow:hidden}
+.channel-cover img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ── CHANNEL HEADER ── */
+.channel-header{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px}
+.channel-header-top{display:flex;align-items:center;gap:14px;padding:14px 0}
+.channel-avatar{
+  width:72px;height:72px;border-radius:50%;
+  border:3px solid var(--white);background:#222;
+  overflow:hidden;flex-shrink:0;
+  box-shadow:0 2px 10px rgba(0,0,0,.18);
+  position:relative;
+}
+.channel-avatar img,.channel-avatar .avatar-placeholder{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;
+}
+.avatar-placeholder{
+  background:linear-gradient(135deg,#333,#555);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;font-weight:700;color:rgba(255,255,255,.8);
+}
+.channel-info{flex:1;min-width:0}
+.channel-name-row{display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap}
+.channel-name{font-size:20px;font-weight:700;color:var(--ink)}
+/* mobile: buttons go below name */
+.channel-btn-sub{
+  padding:8px 22px;border:none;border-radius:24px;
+  background:var(--gjw);color:var(--white);
+  font-family:var(--f);font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;
+}
+.channel-btn-sub:hover{opacity:.88}
+.channel-btn-follow{
+  padding:8px 20px;border:none;border-radius:24px;
+  background:var(--ink);color:var(--white);
+  font-family:var(--f);font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;
+}
+.channel-btn-follow:hover{opacity:.85}
+.channel-meta{font-size:13px;color:var(--ink3);margin-bottom:4px}
+.channel-meta strong{color:var(--ink2);font-weight:600}
+.channel-desc{font-size:13px;color:var(--ink3);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+
+/* action icons row */
+.channel-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.share-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--border2);border-radius:6px;font-family:var(--f);font-size:13px;color:var(--ink2);background:transparent;cursor:pointer;transition:all .14s}
+.share-btn:hover{background:var(--bg)}
+.qr-btn{width:34px;height:34px;border:1px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .14s;background:var(--bg)}
+.qr-btn:hover{background:var(--border)}
+
+/* mobile channel header reflow — matches GJW screenshot */
+@media(max-width:640px){
+  .channel-header{padding:0 16px}
+  .channel-header-top{flex-wrap:wrap;gap:0;padding:12px 0 0}
+  .channel-avatar{width:68px;height:68px;margin-right:12px}
+  .channel-info{width:calc(100% - 80px)}
+  .channel-name{font-size:18px}
+  .channel-name-row{margin-bottom:2px}
+  /* buttons go on their own row below */
+  .channel-btn-row{
+    display:flex;align-items:center;gap:10px;
+    padding:12px 0 14px;width:100%;
+  }
+  .channel-btn-sub,.channel-btn-follow{flex:1;font-size:15px;padding:10px}
+  .channel-actions{padding:0 0 14px}
+  /* hide share text on mobile, keep icon only */
+  .share-btn-text{display:none}
+}
+@media(min-width:641px){
+  .channel-btn-row{display:flex;align-items:center;gap:10px}
+  .channel-header{padding:0 40px}
+}
+
+/* ── CHANNEL TABS ── */
+.channel-tabs{
+  display:flex;align-items:center;
+  border-top:1px solid var(--border);
+  background:var(--white);
+  overflow-x:auto;scrollbar-width:none;
+}
+.channel-tabs::-webkit-scrollbar{display:none}
+.ch-tab{
+  padding:13px 18px;font-size:13.5px;font-weight:500;
+  color:var(--ink3);cursor:pointer;
+  border-bottom:2.5px solid transparent;
+  transition:all .15s;white-space:nowrap;flex-shrink:0;
+}
+.ch-tab:hover{color:var(--ink);background:rgba(0,0,0,.02)}
+.ch-tab.active{color:var(--ink);border-bottom-color:var(--gjw)}
+
+/* ── ABOUT TAB CONTENT ── */
+.about-content{max-width:1000px;margin:0 auto;padding:32px 40px 80px}
+@media(max-width:640px){
+  .about-content{padding:24px 16px 60px}
+  .total-followers-num{font-size:44px;letter-spacing:-1.5px}
+  .platform-followers{gap:18px}
+}
+
+/* ── TOTAL FOLLOWERS ── */
+.followers-section{margin-bottom:40px;position:relative}
+.followers-head{
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;
+}
+.section-label{
+  font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink4);
+  margin-bottom:0;
+}
+.edit-pen-btn{
+  width:26px;height:26px;border-radius:50%;
+  background:transparent;border:1px solid var(--border2);
+  display:none;/* shown only for owner */
+  align-items:center;justify-content:center;
+  cursor:pointer;transition:all .15s;color:var(--ink3);
+  flex-shrink:0;
+}
+.edit-pen-btn:hover{background:var(--bg);border-color:var(--ink3);color:var(--ink)}
+.is-owner .edit-pen-btn{display:flex}
+
+.total-followers-num{
+  font-size:56px;font-weight:800;color:var(--ink);
+  line-height:1;margin-bottom:6px;letter-spacing:-2px;
+}
+.followers-updated{
+  font-size:10px;color:var(--ink4);margin-bottom:14px;
+  letter-spacing:.01em;
+}
+
+/* flat inline row */
+.platform-followers{
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+}
+.pf-item{
+  display:inline-flex;align-items:center;gap:7px;
+  text-decoration:none;color:var(--ink);
+  transition:opacity .14s;
+}
+.pf-item:hover{opacity:.7}
+.pf-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pf-icon svg{display:block}
+.pf-count{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.2px}
+.pf-updated{font-size:10px;color:var(--ink4);margin-left:1px}
+
+/* ── FOLLOWERS EDIT MODAL ── */
+.fedit-bg{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(0,0,0,.45);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.fedit-bg.open{opacity:1;pointer-events:all}
+.fedit-modal{
+  background:var(--white);border-radius:18px;
+  width:100%;max-width:560px;max-height:88vh;
+  overflow-y:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  transform:translateY(14px) scale(.97);transition:transform .2s;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+}
+.fedit-bg.open .fedit-modal{transform:translateY(0) scale(1)}
+.fedit-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:var(--white);z-index:5;
+  border-radius:18px 18px 0 0;
+}
+.fedit-title{font-size:15px;font-weight:600;color:var(--ink)}
+.fedit-close{
+  width:30px;height:30px;border-radius:50%;background:var(--bg);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--ink3);transition:background .14s;
+}
+.fedit-close:hover{background:var(--border)}
+.fedit-body{padding:20px}
+
+/* simple toggle row */
+.fedit-toggle-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0 18px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:20px;
+}
+.fedit-toggle-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.fedit-toggle-desc{font-size:12px;color:var(--ink3)}
+.fedit-toggle{position:relative;width:36px;height:20px;flex-shrink:0}
+.fedit-toggle input{opacity:0;width:0;height:0;position:absolute}
+.fttrack{position:absolute;inset:0;background:var(--border2);border-radius:20px;cursor:pointer;transition:background .2s}
+.fttrack:before{content:'';position:absolute;height:14px;width:14px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform .2s}
+.fedit-toggle input:checked+.fttrack{background:#1a73d4}
+.fedit-toggle input:checked+.fttrack:before{transform:translateX(16px)}
+
+/* links section */
+.fedit-links-head{margin-bottom:16px}
+.fedit-links-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.fedit-links-desc{font-size:13px;color:var(--ink3);line-height:1.5}
+
+/* YouTube-style link row */
+.fedit-link-row{
+  display:flex;align-items:flex-start;gap:12px;
+  margin-bottom:14px;
+}
+.fedit-drag{
+  color:var(--ink4);cursor:grab;padding-top:14px;flex-shrink:0;
+  font-size:16px;letter-spacing:-2px;line-height:1;
+}
+.fedit-drag:active{cursor:grabbing}
+.fedit-fields{
+  flex:1;display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:0;border:1px solid var(--border2);border-radius:10px;overflow:hidden;
+}
+.fedit-field{
+  display:flex;flex-direction:column;
+  padding:10px 14px;
+  border-right:1px solid var(--border2);
+  position:relative;
+}
+.fedit-field:last-child{border-right:none}
+.fedit-field-label{
+  font-size:11px;color:var(--ink3);margin-bottom:4px;font-weight:500;
+}
+.fedit-field input{
+  border:none;background:transparent;
+  font-family:var(--f);font-size:14px;color:var(--ink);
+  outline:none;padding:0;width:100%;
+}
+.fedit-field input::placeholder{color:var(--ink4)}
+.fedit-field input:focus{color:var(--ink)}
+.fedit-fields:focus-within{border-color:#1a73d4;box-shadow:0 0 0 2px rgba(26,115,212,.12)}
+.fedit-del{
+  width:30px;height:30px;border-radius:50%;
+  background:transparent;border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;margin-top:10px;
+  transition:all .14s;color:var(--ink3);
+}
+.fedit-del:hover{background:#fff0f0;border-color:#fca5a5;color:var(--red,#d93636)}
+
+/* GJW default row — locked */
+.fedit-link-row.gjw-default .fedit-drag{cursor:default;opacity:.3}
+.fedit-link-row.gjw-default .fedit-fields{background:var(--bg)}
+.fedit-link-row.gjw-default .fedit-field input{color:var(--ink3)}
+.gjw-lock{
+  font-size:10px;font-weight:600;color:#1a73d4;
+  background:#e8effe;border-radius:4px;padding:2px 6px;
+  align-self:flex-start;margin-top:10px;flex-shrink:0;white-space:nowrap;
+}
+
+/* add link button */
+.fedit-add-btn{
+  display:flex;align-items:center;gap:7px;
+  padding:9px 18px;border-radius:20px;
+  background:var(--bg);border:1px solid var(--border2);
+  font-family:var(--f);font-size:13px;font-weight:500;
+  color:var(--ink2);cursor:pointer;transition:all .14s;
+  margin-top:4px;
+}
+.fedit-add-btn:hover{background:var(--border);color:var(--ink)}
+
+.fedit-foot{
+  padding:14px 20px;border-top:1px solid var(--border);
+  display:flex;gap:8px;justify-content:flex-end;
+  position:sticky;bottom:0;background:var(--white);
+  border-radius:0 0 18px 18px;
+}
+.fedit-cancel{padding:9px 18px;background:transparent;border:1px solid var(--border2);border-radius:8px;font-family:var(--f);font-size:13px;color:var(--ink2);cursor:pointer;transition:background .14s}
+.fedit-cancel:hover{background:var(--bg)}
+.fedit-save{padding:9px 20px;background:#1a73d4;border:none;border-radius:8px;font-family:var(--f);font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:opacity .14s}
+.fedit-save:hover{opacity:.88}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinning{animation:spin .7s linear infinite;display:inline-block}
+
+/* ── DIVIDER ── */
+.section-divider{height:1px;background:var(--border);margin:36px 0}
+
+/* ── ABOUT ME ── */
+.about-section{margin-bottom:40px}
+.about-head{
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;
+}
+.about-text{font-size:15px;line-height:1.8;color:var(--ink2)}
+.about-text p{margin-bottom:14px}
+.about-text p:last-child{margin-bottom:0}
+
+/* about-textarea */
+.about-textarea{
+  width:100%;padding:12px 14px;
+  border:1px solid var(--border2);border-radius:10px;
+  font-family:var(--f);font-size:14px;color:var(--ink);
+  line-height:1.7;resize:vertical;
+  background:var(--bg);outline:none;
+  transition:border-color .15s,background .15s;
+  min-height:140px;
+}
+.about-textarea:focus{border-color:#1a73d4;background:var(--white)}
+.about-charcount{font-size:11px;color:var(--ink4);text-align:right;margin-top:5px}
+
+/* country select */
+.country-select-wrap{position:relative;max-width:320px}
+.country-select{
+  width:100%;padding:10px 38px 10px 14px;
+  border:1px solid var(--border2);border-radius:10px;
+  font-family:var(--f);font-size:14px;color:var(--ink);
+  background:var(--bg);outline:none;cursor:pointer;
+  appearance:none;-webkit-appearance:none;
+  transition:border-color .15s,background .15s;
+}
+.country-select:focus{border-color:#1a73d4;background:var(--white)}
+.country-select-arrow{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  pointer-events:none;color:var(--ink3);
+}
+
+/* fixed more info rows */
+.mi-fixed-rows{display:flex;flex-direction:column;gap:10px}
+.mi-fixed-row{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;
+  border:1px solid var(--border2);border-radius:10px;
+  background:var(--bg);
+}
+.mi-fixed-icon{width:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mi-fixed-label{font-size:12px;font-weight:600;color:var(--ink2);min-width:100px;flex-shrink:0}
+.mi-fixed-value{font-size:13px;color:var(--ink3);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mi-fixed-input{
+  flex:1;border:none;background:transparent;
+  font-family:var(--f);font-size:13px;color:var(--ink);
+  outline:none;min-width:0;
+}
+.mi-fixed-input::placeholder{color:var(--ink4)}
+
+/* ── MORE INFO (YouTube-style) ── */
+.more-info-block{margin-top:24px}
+.more-info-label{
+  font-size:13px;font-weight:600;color:var(--ink);
+  margin-bottom:14px;
+}
+.more-info-row{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:12px;
+}
+.more-info-row:last-child{margin-bottom:0}
+.more-info-icon{
+  width:22px;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;opacity:.55;
+}
+.more-info-link{
+  font-size:14px;color:var(--ink2);text-decoration:none;
+  transition:color .14s;
+}
+.more-info-link:hover{color:var(--gjw-blue,#1a73d4);text-decoration:underline}
+.more-info-text{font-size:14px;color:var(--ink2)}
+
+/* ── BRAND PARTNERS ── */
+.brand-section{margin-bottom:40px}
+.brand-head{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.brand-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
+}
+.brand-item{
+  display:flex;flex-direction:column;align-items:center;gap:8px;cursor:default;
+}
+.brand-item{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:default;
+}
+.brand-logo{
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;position:relative;
+}
+.brand-fav-img{
+  width:40px;height:40px;object-fit:contain;display:block;
+}
+.brand-initials{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;letter-spacing:-.2px;
+  flex-shrink:0;
+}
+.brand-name{
+  font-size:10px;color:var(--ink3);text-align:center;
+  line-height:1.3;max-width:64px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+/* ── BRAND EDIT MODAL ── */
+.brand-search-wrap{
+  display:flex;align-items:center;gap:8px;
+  border:1.5px solid var(--border2);border-radius:10px;
+  padding:10px 13px;background:var(--white);
+  transition:border-color .15s;
+}
+.brand-search-wrap:focus-within{border-color:#1a73d4}
+.brand-search-input{
+  flex:1;border:none;background:transparent;
+  font-family:var(--f);font-size:14px;color:var(--ink);
+  outline:none;
+}
+.brand-search-input::placeholder{color:var(--ink4)}
+.brand-search-clear{
+  background:transparent;border:none;cursor:pointer;
+  color:var(--ink3);display:flex;align-items:center;padding:0;
+  transition:color .14s;
+}
+.brand-search-clear:hover{color:var(--ink)}
+
+.brand-search-results{
+  border:1px solid var(--border);border-radius:10px;
+  overflow:hidden;margin-top:8px;
+  max-height:280px;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+}
+.brand-result-row{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 14px;cursor:pointer;
+  transition:background .14s;border-bottom:1px solid var(--border);
+}
+.brand-result-row:last-child{border-bottom:none}
+.brand-result-row:hover{background:var(--bg)}
+.brand-result-row.already-added{opacity:.4;cursor:default;pointer-events:none}
+.br-logo{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--border);background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+}
+.br-logo img{width:65%;height:65%;object-fit:contain}
+.br-logo .br-init{font-size:12px;font-weight:700;color:var(--ink3)}
+.br-info{flex:1;min-width:0}
+.br-name{font-size:13px;font-weight:500;color:var(--ink)}
+.br-domain{font-size:11px;color:var(--ink3)}
+.br-add{
+  font-size:11px;font-weight:600;color:#1a73d4;
+  background:var(--gjw-l,#e8effe);border:1px solid rgba(26,115,212,.2);
+  border-radius:20px;padding:4px 12px;flex-shrink:0;
+}
+.brand-search-empty{
+  padding:20px;text-align:center;
+  font-size:13px;color:var(--ink3);
+}
+.brand-search-empty strong{display:block;color:var(--ink);margin-bottom:4px;font-size:14px}
+
+/* added brands chips */
+.brand-added-list{display:flex;flex-direction:column;gap:6px}
+.brand-chip{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 12px;border-radius:9px;
+  background:var(--bg);border:1px solid var(--border);
+}
+.bc-logo{
+  width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--border);background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+}
+.bc-logo img{width:65%;height:65%;object-fit:contain}
+.bc-logo .bc-init{font-size:10px;font-weight:700;color:var(--ink3)}
+.bc-name{flex:1;font-size:13px;font-weight:500;color:var(--ink)}
+.bc-remove{
+  background:transparent;border:none;cursor:pointer;
+  color:var(--ink4);display:flex;align-items:center;padding:2px;
+  transition:color .14s;
+}
+.bc-remove:hover{color:var(--red,#d93636)}
+.brand-empty-hint{
+  font-size:12px;color:var(--ink4);text-align:center;padding:14px 0;
+  font-style:italic;
+}
+.show-more-row{
+  display:flex;align-items:center;justify-content:center;
+  margin-top:8px;
+}
+.show-more-btn{
+  display:flex;align-items:center;gap:6px;
+  font-size:13px;color:var(--ink3);cursor:pointer;
+  padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;
+  font-family:var(--f);transition:all .14s;
+}
+.show-more-btn:hover{background:var(--bg);color:var(--ink)}
+.show-more-btn svg{transition:transform .2s}
+.show-more-btn.open svg{transform:rotate(180deg)}
+
+/* ── CASE STUDIES ── */
+.case-studies-section{margin-bottom:40px}
+.cs-main-head{display:flex;align-items:center;gap:8px;margin-bottom:22px}
+
+.cs-row-wrap{margin-bottom:0}
+.cs-row-label-bar{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;color:var(--ink2);
+  letter-spacing:.01em;margin-bottom:12px;
+}
+
+.cs-grid{
+  display:flex;gap:16px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+  padding-bottom:4px;
+}
+.cs-grid::-webkit-scrollbar{display:none}
+.cs-grid .cs-card{
+  flex:0 0 calc(46% - 8px);
+  scroll-snap-align:start;
+  min-width:0;
+}
+/* cs-grid-short: portrait 9:16 cards, 4 visible at a time on desktop */
+.cs-grid-short{
+  display:flex;gap:14px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+  padding-bottom:4px;
+}
+.cs-grid-short::-webkit-scrollbar{display:none}
+.cs-grid-short .cs-card{
+  flex:0 0 calc(22% - 11px) !important;
+  scroll-snap-align:start;
+  min-width:0;
+}
+@media(max-width:640px){
+  .cs-grid-short .cs-card{flex:0 0 45vw !important}
+}
+
+/* long form scroll container */
+.cs-scroll-wrap{position:relative}
+/* arrows above everything */
+.cs-scroll-arrow{z-index:4}
+.cs-scroll-arrow{
+  position:absolute;top:50%;transform:translateY(-calc(50% + 18px));
+  width:32px;height:32px;border-radius:50%;
+  background:var(--white);border:1px solid var(--border2);
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:2;transition:all .15s;color:var(--ink2);
+  font-size:16px;
+}
+.cs-scroll-arrow:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cs-scroll-arrow.prev{left:-14px}
+.cs-scroll-arrow.next{right:-14px}
+.cs-scroll-arrow.hidden{opacity:0;pointer-events:none}
+
+.cs-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  cursor:pointer;transition:all .18s ease;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+.cs-card:hover{box-shadow:0 6px 22px rgba(0,0,0,.1);transform:translateY(-2px)}
+
+.cs-thumb-landscape{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background:#111}
+.cs-thumb-portrait{width:100%;aspect-ratio:9/16;position:relative;overflow:hidden;background:#111}
+.cs-thumb-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:absolute;inset:0}
+
+.cs-play-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.4);
+  display:flex;align-items:center;justify-content:center;transition:all .18s;
+}
+.cs-card:hover .cs-play-btn{background:rgba(255,255,255,.3);transform:scale(1.08)}
+.cs-play-tri{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:11px solid rgba(255,255,255,.9);margin-left:2px}
+
+.cs-short-badge{position:absolute;top:7px;left:7px;background:var(--gjw);color:#fff;font-size:8px;font-weight:800;letter-spacing:.08em;padding:2px 6px;border-radius:4px}
+
+/* card bottom: brand name + button — no extra info */
+.cs-card-foot{padding:10px 12px 10px}
+.cs-brand-name{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.cs-brand-name img{width:16px;height:16px;border-radius:3px;object-fit:contain;border:1px solid var(--border)}
+.cs-brand-name .cs-bini{width:16px;height:16px;border-radius:3px;background:var(--border);display:inline-flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:var(--ink3)}
+.cs-view-btn{
+  display:block;width:100%;padding:8px;
+  background:var(--gjw);color:var(--white);
+  border:none;border-radius:8px;font-family:var(--f);
+  font-size:11px;font-weight:600;cursor:pointer;transition:opacity .14s;
+}
+.cs-view-btn:hover{opacity:.9}
+
+/* ── CASE STUDY POPUP ── */
+.cs-popup-bg{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.cs-popup-bg.open{opacity:1;pointer-events:all}
+.cs-popup{
+  background:var(--white);border-radius:20px;
+  width:100%;max-width:520px;max-height:90vh;
+  overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+  box-shadow:0 24px 80px rgba(0,0,0,.22);
+  transform:translateY(16px) scale(.97);transition:transform .22s;
+}
+.cs-popup-bg.open .cs-popup{transform:none}
+.cs-popup-head{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 18px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:var(--white);z-index:5;
+  border-radius:20px 20px 0 0;
+}
+.cs-popup-logo{
+  width:46px;height:46px;border-radius:10px;border:1px solid var(--border);
+  background:var(--bg);display:flex;align-items:center;justify-content:center;
+  overflow:hidden;flex-shrink:0;
+}
+.cs-popup-logo img{width:70%;height:70%;object-fit:contain}
+.cs-popup-logo .cs-pop-ini{font-size:12px;font-weight:700;color:var(--ink3)}
+.cs-popup-brand{font-size:16px;font-weight:700;color:var(--ink);flex:1}
+.cs-popup-close{
+  width:30px;height:30px;border-radius:50%;background:var(--bg);border:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--ink3);flex-shrink:0;transition:background .14s;
+}
+.cs-popup-close:hover{background:var(--border)}
+.cs-popup-body{padding:16px 18px}
+
+/* carousel */
+.cs-carousel{position:relative;margin-bottom:14px}
+.cs-carousel-track{position:relative}
+.cs-carousel-slide{border-radius:12px;overflow:hidden;background:#111;display:none}
+.cs-carousel-slide.active{display:block}
+.cs-carousel-slide iframe{width:100%;border:none;display:block}
+.cs-carousel-slide .cs-slide-placeholder{
+  width:100%;background:linear-gradient(160deg,#111,#1a1a2e);
+  display:flex;align-items:center;justify-content:center;
+}
+.cs-carousel-nav{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:10px;
+}
+.cs-nav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);cursor:pointer;transition:background .15s}
+.cs-nav-dot.active{background:var(--ink)}
+.cs-carousel-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(0,0,0,.5);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;z-index:2;transition:background .14s;
+}
+.cs-carousel-arrow:hover{background:rgba(0,0,0,.75)}
+.cs-carousel-arrow.prev{left:8px}
+.cs-carousel-arrow.next{right:8px}
+
+.cs-popup-deliverables{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:10px;padding:12px 14px;
+}
+.cs-popup-deliv-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);margin-bottom:6px}
+.cs-popup-deliv-text{font-size:13px;color:var(--ink2);line-height:1.6;white-space:pre-wrap}
+.cs-popup-deliv-empty{font-size:13px;color:var(--ink4);font-style:italic}
+
+/* ── CASE EDIT MODAL ── */
+.ce-brand-pick{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;border:1.5px solid var(--border2);border-radius:10px;
+  cursor:pointer;transition:border-color .15s;margin-bottom:14px;
+  background:var(--white);
+}
+.ce-brand-pick:hover{border-color:#1a73d4}
+.ce-brand-pick.selected{border-color:#1a73d4;background:#f0f5ff}
+.ce-brand-logo{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.ce-brand-logo img{width:70%;height:70%;object-fit:contain}
+.ce-brand-logo .ce-ini{font-size:11px;font-weight:700;color:var(--ink3)}
+.ce-brand-info{flex:1}
+.ce-brand-label{font-size:13px;font-weight:500;color:var(--ink)}
+.ce-brand-change{font-size:11px;color:#1a73d4;flex-shrink:0}
+.ce-no-brand{font-size:13px;color:var(--ink3)}
+
+.ce-type-toggle{display:flex;gap:8px;margin-bottom:16px}
+.ce-type-btn{
+  flex:1;padding:9px 12px;border:1.5px solid var(--border2);border-radius:8px;
+  font-family:var(--f);font-size:12px;font-weight:500;color:var(--ink2);
+  background:transparent;cursor:pointer;transition:all .15s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.ce-type-btn.active{border-color:#1a73d4;background:#f0f5ff;color:#1a73d4;font-weight:600}
+
+.ce-url-error{font-size:11px;color:#d93636;margin-top:3px;display:none}
+.ce-url-error.show{display:block}
+
+/* ── PRODUCTS ── */
+.prod-section{margin-bottom:40px}
+.prod-head{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.prod-grid{
+  display:flex;gap:16px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+  padding-bottom:4px;
+}
+.prod-grid::-webkit-scrollbar{display:none}
+.prod-grid .prod-card{
+  flex:0 0 calc(50% - 8px);
+  scroll-snap-align:start;
+  min-width:0;
+}
+.prod-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+  transition:all .18s ease;
+  text-decoration:none;color:inherit;display:flex;flex-direction:column;
+}
+.prod-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.1);transform:translateY(-2px)}
+.prod-img{
+  width:100%;aspect-ratio:16/9;overflow:hidden;
+  background:var(--bg);position:relative;flex-shrink:0;
+}
+.prod-img img{width:100%;height:100%;object-fit:cover;display:block}
+.prod-img-placeholder{
+  width:100%;height:100%;background:linear-gradient(135deg,#f0f0f0,#e0e0e0);
+  display:flex;align-items:center;justify-content:center;
+}
+.prod-store-badge{
+  position:absolute;top:8px;left:8px;
+  background:rgba(255,255,255,.95);border-radius:6px;
+  padding:3px 8px;font-size:9px;font-weight:700;
+  color:var(--ink2);box-shadow:0 1px 4px rgba(0,0,0,.12);
+  display:flex;align-items:center;gap:4px;
+}
+.prod-store-badge img{width:12px;height:12px;object-fit:contain}
+.prod-info{padding:10px 14px 4px;display:flex;flex-direction:column;gap:4px}
+.prod-name{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prod-desc{font-size:11px;color:var(--ink3);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prod-price{font-size:14px;font-weight:700;color:var(--ink)}
+.prod-buy-btn{
+  margin:8px 14px 12px;padding:9px;
+  background:var(--ink);color:var(--white);
+  border:none;border-radius:9px;font-family:var(--f);
+  font-size:12px;font-weight:600;cursor:pointer;
+  transition:opacity .14s;display:flex;align-items:center;justify-content:center;gap:6px;
+  text-decoration:none;
+}
+.prod-buy-btn:hover{opacity:.85}
+
+/* edit modal */
+.prod-url-row{display:flex;gap:8px;align-items:flex-end}
+.prod-url-row .fedit-fields{flex:1}
+
+/* preview card in modal */
+.prod-preview-wrap{
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  display:flex;gap:0;background:var(--white);
+}
+.prod-preview-img{
+  width:100px;height:100px;flex-shrink:0;
+  background:var(--bg);overflow:hidden;
+}
+.prod-preview-img img{width:100%;height:100%;object-fit:cover}
+.prod-preview-info{flex:1;padding:12px 14px;min-width:0}
+.prod-preview-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prod-preview-price{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.prod-preview-source{font-size:10px;color:var(--ink4)}
+.prod-preview-add{
+  margin:10px 14px 12px;width:calc(100% - 28px);
+  padding:8px;background:#1a73d4;color:#fff;
+  border:none;border-radius:8px;font-family:var(--f);
+  font-size:12px;font-weight:600;cursor:pointer;transition:opacity .14s;
+}
+.prod-preview-add:hover{opacity:.88}
+
+/* added products chips */
+.prod-chip{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 10px;border-radius:9px;
+  background:var(--bg);border:1px solid var(--border);
+  margin-bottom:6px;
+}
+.prod-chip-img{width:44px;height:44px;border-radius:6px;overflow:hidden;background:var(--border);flex-shrink:0}
+.prod-chip-img img{width:100%;height:100%;object-fit:cover}
+.prod-chip-info{flex:1;min-width:0}
+.prod-chip-name{font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prod-chip-price{font-size:11px;color:var(--ink3)}
+
+/* ── LINK IN BIO ── */
+.lib-section{margin-bottom:40px}
+.lib-head{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.lib-list{display:flex;flex-direction:column;gap:10px}
+
+.lib-item{
+  display:flex;align-items:center;gap:14px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:14px 16px;
+  text-decoration:none;color:inherit;
+  box-shadow:0 1px 4px rgba(0,0,0,.04);
+  transition:all .18s ease;
+}
+.lib-item:hover{
+  border-color:var(--border2);
+  box-shadow:0 4px 16px rgba(0,0,0,.09);
+  transform:translateY(-1px);
+}
+.lib-item:active{transform:translateY(0)}
+
+.lib-item-featured{background:#1a73d4;border-color:#1a73d4}
+.lib-item-featured .lib-title{color:#fff;font-weight:600}
+.lib-item-featured .lib-sub{color:rgba(255,255,255,.65)}
+.lib-item-featured:hover{background:#1560b8;border-color:#1560b8}
+.lib-item-featured .lib-arrow{border-color:rgba(255,255,255,.3)}
+
+.lib-icon{
+  width:42px;height:42px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.lib-body{flex:1;min-width:0}
+.lib-title{font-size:14px;font-weight:500;color:var(--ink);line-height:1.3;margin-bottom:2px}
+.lib-sub{font-size:12px;color:var(--ink3)}
+.lib-arrow{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid rgba(0,0,0,.1);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;opacity:.5;transition:opacity .15s;
+}
+.lib-item:hover .lib-arrow{opacity:1}
+
+/* ── LINKS EDIT — LINKTREE STYLE CARDS ── */
+.link-edit-card{
+  display:flex;align-items:center;gap:10px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:12px 14px;
+  margin-bottom:8px;
+  transition:box-shadow .15s;
+}
+.link-edit-card:hover{box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.link-drag-handle{
+  color:var(--ink4);cursor:grab;flex-shrink:0;
+  font-size:16px;line-height:1;letter-spacing:-2px;user-select:none;
+  padding:0 2px;
+}
+.link-drag-handle:active{cursor:grabbing}
+.link-edit-card.dragging{opacity:.4;background:var(--bg)}
+.link-edit-card.drag-over{border-color:#1a73d4;border-top-width:2px}
+
+.link-card-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.link-card-favicon{
+  width:24px;height:24px;border-radius:5px;
+  object-fit:contain;flex-shrink:0;
+}
+.link-card-title-row{display:flex;align-items:center;gap:6px}
+
+.link-edit-inline{
+  border:none;background:transparent;
+  font-family:var(--f);color:var(--ink);outline:none;width:100%;
+  padding:0;
+}
+.link-edit-inline.title{font-size:13px;font-weight:600}
+.link-edit-inline.subtitle{font-size:11px;color:var(--ink3)}
+.link-edit-inline.url{font-size:11px;color:var(--ink4)}
+.link-edit-inline:focus{color:var(--ink)}
+.link-edit-inline::placeholder{color:var(--ink4)}
+
+/* visibility toggle */
+.link-vis-toggle{
+  position:relative;width:36px;height:20px;flex-shrink:0;
+}
+.link-vis-toggle input{opacity:0;width:0;height:0;position:absolute}
+.link-vis-track{position:absolute;inset:0;background:var(--border2);border-radius:20px;cursor:pointer;transition:background .2s}
+.link-vis-track:before{content:'';position:absolute;height:14px;width:14px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform .2s}
+.link-vis-toggle input:checked+.link-vis-track{background:#1a73d4}
+.link-vis-toggle input:checked+.link-vis-track:before{transform:translateX(16px)}
+
+.link-card-del{
+  background:transparent;border:none;cursor:pointer;
+  color:var(--ink4);display:flex;align-items:center;padding:2px;flex-shrink:0;
+  transition:color .14s;
+}
+.link-card-del:hover{color:#d93636}
+
+/* ── CASE STUDY POPUP ── */
+.popup-bg{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.6);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;
+  transition:opacity .22s;
+}
+.popup-bg.open{opacity:1;pointer-events:all}
+.popup{
+  background:var(--white);border-radius:20px;
+  width:100%;max-width:480px;
+  max-height:88vh;overflow-y:auto;
+  box-shadow:0 24px 80px rgba(0,0,0,.25);
+  transform:translateY(20px) scale(.97);
+  transition:transform .22s;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+}
+.popup-bg.open .popup{transform:translateY(0) scale(1)}
+.popup-head{
+  display:flex;align-items:center;gap:12px;
+  padding:18px 18px 14px;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:var(--white);z-index:10;
+  border-radius:20px 20px 0 0;
+}
+.popup-brand-logo{
+  width:52px;height:52px;border-radius:10px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--ink3);
+  background:var(--bg);flex-shrink:0;overflow:hidden;
+}
+.popup-brand-logo img{width:100%;height:100%;object-fit:contain;padding:4px}
+.popup-head-info{flex:1}
+.popup-brand-name{font-size:16px;font-weight:700;color:var(--ink)}
+.popup-collab-name{font-size:12px;color:var(--ink3);margin-top:2px}
+.popup-close{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--bg);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--ink3);flex-shrink:0;
+  transition:background .14s;
+}
+.popup-close:hover{background:var(--border)}
+.popup-body{padding:18px}
+.popup-deliverables{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:18px;
+  background:var(--bg);border-radius:10px;padding:11px 14px;
+  border:1px solid var(--border);
+}
+.popup-deliverables-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);margin-bottom:1px}
+.popup-deliverables-val{font-size:13px;font-weight:600;color:var(--ink)}
+.popup-images{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.popup-img{
+  border-radius:10px;overflow:hidden;
+  aspect-ratio:4/5;background:var(--bg);
+  border:1px solid var(--border);
+}
+.popup-img img{width:100%;height:100%;object-fit:cover}
+.popup-img-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+}
+.popup-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  margin-bottom:18px;
+}
+.popup-stat{
+  background:var(--bg);border-radius:10px;padding:12px;
+  text-align:center;border:1px solid var(--border);
+}
+.popup-stat-num{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.popup-stat-lbl{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
+.popup-cta{
+  display:flex;align-items:center;gap:12px;
+  padding-top:14px;border-top:1px solid var(--border);
+}
+.popup-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,#1a73d4,#5a96ff);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--white);
+  flex-shrink:0;overflow:hidden;
+}
+.popup-avatar img{width:100%;height:100%;object-fit:cover}
+.popup-work-btn{
+  flex:1;padding:13px;background:var(--ink);color:var(--white);
+  border:none;border-radius:30px;font-family:var(--f);
+  font-size:13px;font-weight:700;cursor:pointer;
+  letter-spacing:.02em;transition:background .14s;
+}
+.popup-work-btn:hover{background:#222}
+.popup-work-label{font-size:10px;color:var(--ink4);text-align:center;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.popup-made-with{
+  display:flex;align-items:center;gap:5px;
+  justify-content:center;padding:12px 18px;
+  font-size:11px;color:var(--ink4);
+  border-top:1px solid var(--border);
+}
+.popup-made-with a{color:var(--gjw-blue);text-decoration:none;font-weight:500}
+
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.about-content>*{animation:up .4s ease both}
+.about-content>*:nth-child(1){animation-delay:.05s}
+.about-content>*:nth-child(2){animation-delay:.1s}
+.about-content>*:nth-child(3){animation-delay:.15s}
+.about-content>*:nth-child(4){animation-delay:.2s}
+.about-content>*:nth-child(5){animation-delay:.25s}
+
+/* desktop: buttons inline with name; mobile: own row */
+.ch-btn-desktop{display:inline-flex}
+.ch-btn-mobile{display:none}
+
+/* ── MOBILE RESPONSIVE GRIDS ── */
+@media(max-width:640px){
+  .ch-btn-desktop{display:none}
+  .ch-btn-mobile{display:flex}
+  /* brand partners: 3 cols on mobile */
+  .brand-grid{grid-template-columns:repeat(3,1fr);gap:12px}
+  .brand-name{font-size:10px}
+
+  /* case studies long form: full-width cards in scroll */
+  .cs-grid .cs-card{flex:0 0 75vw}
+  .cs-scroll-arrow{display:none}
+
+  /* case studies short form: 2 cols on mobile */
+  /* cs-grid-short removed — unified row */
+
+  /* products: horizontal scroll on mobile too */
+  .prod-grid .prod-card{flex:0 0 78vw}
+
+  /* links: full width */
+  .lib-item{padding:12px 14px}
+  .lib-title{font-size:13px}
+
+  /* section label spacing */
+  .section-divider{margin:24px 0}
+}
+
+/* ── EMPTY STATES (owner only) ── */
+.empty-state{
+  display:none;/* hidden by default */
+  flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:32px 20px;
+  border:1.5px dashed var(--border2);border-radius:16px;
+  background:var(--bg);
+  cursor:pointer;transition:border-color .18s,background .18s;
+  width:100%;
+}
+.empty-state:hover{border-color:#1a73d4;background:#f0f5ff}
+.is-owner .empty-state{display:flex}
+.empty-state-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--white);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:10px;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.empty-state-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.empty-state-sub{font-size:12px;color:var(--ink3);line-height:1.5;max-width:220px}
+.empty-state-btn{
+  margin-top:12px;padding:8px 18px;
+  background:#1a73d4;color:#fff;
+  border:none;border-radius:20px;
+  font-family:var(--f);font-size:12px;font-weight:600;cursor:pointer;
+  transition:opacity .14s;
+}
+.empty-state-btn:hover{opacity:.88}
+
+/* brand empty circles */
+.brand-empty-grid{
+  display:none;
+  grid-template-columns:repeat(6,1fr);gap:16px;
+  width:100%;
+}
+.is-owner .brand-empty-grid{display:grid}
+@media(max-width:640px){
+  .brand-empty-grid{grid-template-columns:repeat(3,1fr)}
+}
+.brand-empty-circle{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:pointer;
+}
+.brand-empty-logo{
+  width:100%;aspect-ratio:1;border-radius:50%;
+  border:1.5px dashed var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg);
+  font-size:18px;color:var(--ink4);
+  transition:all .15s;
+}
+.brand-empty-circle:hover .brand-empty-logo{border-color:#1a73d4;background:#f0f5ff;color:#1a73d4}
+.brand-empty-text{font-size:10px;color:var(--ink4)}
+
+/* ── UNIFIED CS SCROLL — mixed long + short ── */
+.cs-grid .cs-card-short{
+  flex:0 0 calc(28% - 8px);  /* portrait cards narrower */
+}
+.cs-grid .cs-card:not(.cs-card-short){
+  flex:0 0 calc(46% - 8px);  /* landscape cards, 3rd peeks */
+}
+@media(max-width:640px){
+  .cs-grid .cs-card-short{flex:0 0 45vw}
+  .cs-grid .cs-card:not(.cs-card-short){flex:0 0 78vw}
+}
+
+/* ── ABOUT ME PHOTO + TEXT LAYOUT ── */
+.about-body-row{display:flex;gap:36px;align-items:flex-start}
+.about-photo-wrap{flex-shrink:0;width:400px}
+.about-photo{
+  width:400px;height:400px;
+  border-radius:18px;object-fit:cover;
+  border:1.5px solid var(--border);
+  display:block;
+}
+.about-text-col{flex:1;min-width:0}
+
+/* collapsible text area */
+.about-text-clamp{
+  position:relative;
+  max-height:120px;
+  overflow:hidden;
+  transition:max-height .4s ease;
+}
+.about-text-clamp.expanded{max-height:2000px}
+.about-text-fade{
+  position:absolute;bottom:0;left:0;right:0;
+  height:60px;
+  background:linear-gradient(to bottom,rgba(249,249,249,0) 0%,rgba(249,249,249,.97) 100%);
+  pointer-events:none;
+  transition:opacity .3s;
+}
+.about-text-clamp.expanded .about-text-fade{opacity:0;pointer-events:none}
+.about-show-more{
+  margin-top:6px;
+  background:none;border:none;
+  font-family:var(--f);font-size:13px;font-weight:600;
+  color:#1a73d4;cursor:pointer;padding:0;
+  display:block;
+}
+.about-show-more:hover{opacity:.75}
+
+@media(max-width:860px){
+  .about-photo-wrap{width:280px}
+  .about-photo{width:280px;height:280px}
+}
+@media(max-width:640px){
+  .about-body-row{flex-direction:column;gap:18px}
+  .about-photo-wrap{width:100%}
+  .about-photo{width:100%;height:280px;border-radius:14px}
+  .about-text-clamp{max-height:120px}
+}
+
+
+/* thumbnail play overlay */
+.cs-thumb-landscape,.cs-thumb-portrait{position:relative;overflow:hidden}
+.cs-play-overlay{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.18);
+  transition:background .18s;
+}
+.cs-card:hover .cs-play-overlay{background:rgba(0,0,0,.32)}
+
+/* brand name chip — replaces broken logo */
+.cs-brand-chip{
+  display:inline-block;
+  font-size:11px;font-weight:700;
+  color:var(--ink2);
+  letter-spacing:.01em;
+}
+
+/* photo upload button */
+.photo-upload-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 16px;border-radius:8px;
+  border:1.5px solid var(--border2);
+  background:var(--white);color:var(--ink2);
+  font-family:var(--f);font-size:13px;font-weight:500;
+  cursor:pointer;transition:all .15s;
+}
+.photo-upload-btn:hover{border-color:#1a73d4;color:#1a73d4;background:#f0f5ff}
+
+/* ── EXPORT FAB ── */
+.export-fab{
+  position:fixed;bottom:28px;right:28px;z-index:900;
+  display:none;
+}
+.is-owner .export-fab{display:block}
+.export-fab-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:11px 20px;
+  background:var(--ink);color:#fff;
+  border:none;border-radius:30px;
+  font-family:var(--f);font-size:13px;font-weight:600;
+  cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,.25);
+  transition:all .18s;
+}
+.export-fab-btn:hover{background:#000;transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.3)}
+.export-fab-btn:active{transform:translateY(0)}
+
+/* export progress overlay */
+.export-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.5);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.export-overlay.open{opacity:1;pointer-events:all}
+.export-card{
+  background:#fff;border-radius:20px;padding:32px 36px;
+  text-align:center;max-width:340px;width:90%;
+  box-shadow:0 24px 80px rgba(0,0,0,.2);
+}
+.export-card-icon{font-size:36px;margin-bottom:12px}
+.export-card h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.export-card p{font-size:13px;color:var(--ink3);line-height:1.6;margin-bottom:20px}
+.export-card-btn{
+  padding:10px 24px;background:#1a73d4;color:#fff;
+  border:none;border-radius:20px;font-family:var(--f);
+  font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s;
+}
+.export-card-btn:hover{opacity:.88}
+</style>
+</head>
+<body>
+
+<!-- GJW TOPNAV -->
+<nav class="topnav">
+  <div class="nav-left">
+    <div class="hamburger"><span></span><span></span><span></span></div>
+    <a class="gjw-logo" href="#">
+      <img src="https://www.ganjingworld.com/img/logo/gjw_logo_glow_v1.webp"
+        alt="GJW" style="height:30px;width:auto;object-fit:contain"/>
+
+    </a>
+    <div class="nav-links">
+      <div class="nav-link">Browse</div>
+      <div class="nav-link has-arrow" style="display:flex;align-items:center">GJW+</div>
+      <div class="nav-link">Kids</div>
+      <div class="nav-link">#Events</div>
+      <div class="nav-link">Live TV</div>
+    </div>
+  </div>
+  <div class="nav-center">
+    <div class="search-bar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input placeholder="Search"/>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round"><line x1="21" y1="21" x2="16.65" y2="16.65"/><circle cx="11" cy="11" r="8"/></svg>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+    <div class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+    <div class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+    <div class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <button class="btn-sub">SUBSCRIBE</button>
+    <button class="btn-sign">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Sign In
+    </button>
+  </div>
+</nav>
+
+<!-- CHANNEL COVER -->
+<div class="channel-cover">
+  
+</div>
+
+<!-- CHANNEL HEADER -->
+<div class="channel-header">
+  <div class="channel-header-top">
+    <div class="channel-avatar">
+      <div class="avatar-placeholder" style="position:absolute;inset:0">?</div>
+    </div>
+    <div class="channel-info">
+      <div class="channel-name-row">
+        <span class="channel-name">Your Name</span>
+        <button class="edit-pen-btn" onclick="openChannelEdit()" title="Edit channel info" style="margin-left:2px">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button>
+        <button class="channel-btn-sub ch-btn-desktop">Subscribe</button>
+        <button class="channel-btn-follow ch-btn-desktop">Follow</button>
+      </div>
+      <div class="channel-meta"><strong>0 followers</strong> • <strong>0 content items</strong></div>
+      <div class="channel-desc">Your channel description will appear here.</div>
+    </div>
+    <div class="channel-actions">
+      <div class="qr-btn" title="QR Code">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM17 17h3v3h-3z"/></svg>
+      </div>
+      <div class="qr-btn" title="Share">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </div>
+    </div>
+  </div>
+  <!-- Subscribe / Follow — mobile only row -->
+  <div class="channel-btn-row ch-btn-mobile">
+    <button class="channel-btn-sub">Subscribe</button>
+    <button class="channel-btn-follow">Follow</button>
+  </div>
+
+  <!-- TABS -->
+  <div class="channel-tabs">
+    <div class="ch-tab" onclick="setTab(this,'home')">Home</div>
+    <div class="ch-tab" onclick="setTab(this,'videos')">Videos</div>
+    <div class="ch-tab" onclick="setTab(this,'live')">Live</div>
+    <div class="ch-tab" onclick="setTab(this,'shorts')">Shorts</div>
+    <div class="ch-tab active" onclick="setTab(this,'about')">About</div>
+  </div>
+</div>
+
+<!-- ABOUT TAB CONTENT -->
+<div class="about-content">
+
+  <!-- TOTAL FOLLOWERS -->
+  <div class="followers-section">
+    <div class="followers-head">
+      <div class="section-label">Total Followers</div>
+      <button class="edit-pen-btn" onclick="openFollowersEdit()" title="Edit social accounts">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+    </div>
+    <div class="total-followers-num" id="total-num">0</div>
+    <div class="followers-updated" id="followers-updated"></div>
+    <div class="platform-followers" id="platform-followers-display"></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ABOUT ME -->
+  <div class="about-section">
+    <div class="about-head">
+      <div class="section-label">About Me</div>
+      <button class="edit-pen-btn" onclick="openAboutEdit()" title="Edit about me">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+    </div>
+    <div class="about-body-row">
+      <!-- Profile photo (optional) -->
+      <div class="about-photo-wrap" id="about-photo-wrap" style="display:none">
+        <img id="about-photo-img" src="" alt="Profile photo" class="about-photo"/>
+      </div>
+      <!-- Text + more info -->
+      <div class="about-text-col">
+        <!-- Bio — clamped with show more -->
+        <div class="about-text-clamp" id="about-text-clamp">
+          <div class="about-text" id="about-text-display"></div>
+          <div class="about-text-fade" id="about-text-fade"></div>
+        </div>
+        <button class="about-show-more" id="about-show-more-btn" onclick="toggleAboutExpand()">Show more ↓</button>
+        <!-- MORE INFO — always visible below bio -->
+        <div class="more-info-block" id="more-info-display" style="margin-top:16px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- BRAND PARTNERS -->
+  <div class="brand-section">
+    <div class="brand-head">
+      <div class="section-label">Brand Partners</div>
+      <button class="edit-pen-btn" onclick="openBrandEdit()" title="Edit brand partners">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+    </div>
+    <!-- empty state shown to owner when no brands added -->
+    <div class="brand-empty-grid" id="brand-empty-state" onclick="openBrandEdit()" style="display:none">
+      <div class="brand-empty-circle"><div class="brand-empty-logo">+</div><div class="brand-empty-text">Add brand</div></div>
+      <div class="brand-empty-circle"><div class="brand-empty-logo">+</div><div class="brand-empty-text">Add brand</div></div>
+      <div class="brand-empty-circle"><div class="brand-empty-logo">+</div><div class="brand-empty-text">Add brand</div></div>
+      <div class="brand-empty-circle"><div class="brand-empty-logo">+</div><div class="brand-empty-text">Add brand</div></div>
+      <div class="brand-empty-circle"><div class="brand-empty-logo">+</div><div class="brand-empty-text">Add brand</div></div>
+      <div class="brand-empty-circle"><div class="brand-empty-logo">+</div><div class="brand-empty-text">Add brand</div></div>
+    </div>
+    <div class="brand-grid" id="brand-grid-display"></div>
+    <div class="show-more-row" id="brand-more-row" style="display:none">
+      <button class="show-more-btn" id="showMoreBtn" onclick="toggleBrands()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        Show more
+      </button>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- CASE STUDIES -->
+  <div class="case-studies-section">
+    <div class="cs-main-head">
+      <div class="section-label">Case Studies</div>
+      <button class="edit-pen-btn" onclick="openCaseEdit()" title="Edit case studies">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+    </div>
+
+    <!-- empty state when no case studies -->
+    <div class="empty-state" id="cs-empty-state" onclick="openCaseEdit()">
+      <div class="empty-state-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a73d4" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <div class="empty-state-title">Showcase your collaborations</div>
+      <div class="empty-state-sub">Add brand collaboration videos from your GJW channel</div>
+      <button class="empty-state-btn">+ Add case study</button>
+    </div>
+
+    <!-- Long form row (auto-populated from detected type) -->
+    <div class="cs-row-wrap" id="cs-long-wrap" style="display:none">
+      <div class="cs-scroll-wrap">
+        <button class="cs-scroll-arrow prev hidden" id="cs-long-prev" onclick="scrollLongGrid(-1)">‹</button>
+        <div class="cs-grid" id="cs-long-grid"></div>
+        <button class="cs-scroll-arrow next" id="cs-long-next" onclick="scrollLongGrid(1)">›</button>
+      </div>
+    </div>
+
+    <!-- Short form row (auto-populated from detected type) -->
+    <div class="cs-row-wrap" id="cs-short-wrap" style="display:none;margin-top:16px">
+      <div class="cs-scroll-wrap">
+        <button class="cs-scroll-arrow prev hidden" id="cs-short-prev" onclick="scrollShortGrid(-1)">‹</button>
+        <div class="cs-grid cs-grid-short" id="cs-short-grid"></div>
+        <button class="cs-scroll-arrow next" id="cs-short-next" onclick="scrollShortGrid(1)">›</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- PRODUCTS -->
+  <div class="prod-section">
+    <div class="prod-head">
+      <div class="section-label">Products</div>
+      <button class="edit-pen-btn" onclick="openProdEdit()" title="Edit products">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+    </div>
+    <!-- empty state when no products -->
+    <div class="empty-state" id="prod-empty-state" onclick="openProdEdit()">
+      <div class="empty-state-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a73d4" stroke-width="1.8" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </div>
+      <div class="empty-state-title">Showcase your products</div>
+      <div class="empty-state-sub">Paste any store link — Shopify, Gumroad, Etsy and more</div>
+      <button class="empty-state-btn">+ Add product</button>
+    </div>
+    <div class="cs-scroll-wrap">
+      <button class="cs-scroll-arrow prev hidden" id="prod-prev" onclick="scrollProdGrid(-1)">‹</button>
+      <div class="prod-grid" id="prod-grid-display"></div>
+      <button class="cs-scroll-arrow next" id="prod-next" onclick="scrollProdGrid(1)">›</button>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- LINK IN BIO -->
+  <div class="lib-section">
+    <div class="lib-head">
+      <div class="section-label">Links</div>
+      <button class="edit-pen-btn" onclick="openLinksEdit()" title="Edit links">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+    </div>
+    <!-- empty state when no links -->
+    <div class="empty-state" id="links-empty-state" onclick="openLinksEdit()">
+      <div class="empty-state-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a73d4" stroke-width="1.8" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+      </div>
+      <div class="empty-state-title">Add your links</div>
+      <div class="empty-state-sub">YouTube, Instagram, newsletter, booking page — anything</div>
+      <button class="empty-state-btn">+ Add link</button>
+    </div>
+    <div class="lib-list" id="lib-list-display"></div>
+    <div id="lib-more-wrap" style="margin-top:10px;display:none">
+      <button class="show-more-btn" id="linksMoreBtn" onclick="toggleLinks()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        Show more
+      </button>
+    </div>
+  </div>
+
+</div><!-- /about-content -->
+
+<!-- CHANNEL EDIT MODAL -->
+<div class="fedit-bg" id="channelEditBg" onclick="closeChannelEditOnBg(event)">
+  <div class="fedit-modal" style="max-width:500px">
+    <div class="fedit-head">
+      <span class="fedit-title">Channel info</span>
+      <button class="fedit-close" onclick="closeChannelEdit()">×</button>
+    </div>
+    <div class="fedit-body">
+
+      <!-- Banner preview + URL -->
+      <div style="margin-bottom:20px">
+        <div class="fedit-links-title" style="margin-bottom:8px">Channel banner</div>
+        <div id="ch-banner-preview" style="width:100%;height:90px;border-radius:10px;background:#222;margin-bottom:10px;transition:background .2s"></div>
+        <div class="fedit-fields" style="grid-template-columns:1fr">
+          <div class="fedit-field">
+            <div class="fedit-field-label">Banner image URL</div>
+            <input id="ch-banner-input" type="url" placeholder="https://…/banner.jpg" oninput="previewChannelBanner(this.value)"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avatar preview + URL -->
+      <div style="margin-bottom:20px">
+        <div class="fedit-links-title" style="margin-bottom:8px">Profile icon</div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div id="ch-avatar-preview" style="width:64px;height:64px;border-radius:50%;background:#555;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff">?</div>
+          <div class="fedit-fields" style="grid-template-columns:1fr;flex:1">
+            <div class="fedit-field">
+              <div class="fedit-field-label">Icon image URL</div>
+              <input id="ch-avatar-input" type="url" placeholder="https://…/avatar.jpg" oninput="previewChannelAvatar(this.value)"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Name + Handle -->
+      <div class="fedit-fields" style="grid-template-columns:1fr 1fr;margin-bottom:4px">
+        <div class="fedit-field">
+          <div class="fedit-field-label">Display name</div>
+          <input id="ch-name-input" type="text" placeholder="Your Name"/>
+        </div>
+        <div class="fedit-field">
+          <div class="fedit-field-label">GJW handle</div>
+          <input id="ch-handle-input" type="text" placeholder="@yourchannel"/>
+        </div>
+      </div>
+
+    </div>
+    <div class="fedit-foot">
+      <button class="fedit-cancel" onclick="closeChannelEdit()">Cancel</button>
+      <button class="fedit-save" onclick="saveChannel()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- LINKS EDIT MODAL -->
+<div class="fedit-bg" id="linksEditBg" onclick="closeLinksEditOnBg(event)">
+  <div class="fedit-modal" style="max-width:500px">
+    <div class="fedit-head">
+      <span class="fedit-title">Edit links</span>
+      <button class="fedit-close" onclick="closeLinksEdit()">×</button>
+    </div>
+    <div class="fedit-body">
+      <!-- Add URL input -->
+      <div class="fedit-links-desc" style="margin-bottom:14px">Paste a link — we'll fetch the title automatically. Drag ⋮⋮ to reorder.</div>
+      <div style="display:flex;gap:8px;margin-bottom:20px">
+        <div class="brand-search-wrap" style="flex:1">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <input id="links-new-url" class="brand-search-input" type="url" placeholder="https://your-link.com" autocomplete="off"/>
+        </div>
+        <button class="fedit-pull-btn" onclick="fetchAndAddLink()" style="height:44px;padding:0 16px;border-radius:10px;font-size:12px">Add</button>
+      </div>
+      <!-- Link rows -->
+      <div id="links-edit-rows"></div>
+    </div>
+    <div class="fedit-foot">
+      <button class="fedit-cancel" onclick="closeLinksEdit()">Cancel</button>
+      <button class="fedit-save" onclick="saveLinks()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- BRAND PARTNERS EDIT MODAL -->
+<div class="fedit-bg" id="brandEditBg" onclick="closeBrandOnBg(event)">
+  <div class="fedit-modal" style="max-width:520px">
+    <div class="fedit-head">
+      <span class="fedit-title">Brand partners</span>
+      <button class="fedit-close" onclick="closeBrandEdit()">×</button>
+    </div>
+    <div class="fedit-body" style="padding-bottom:8px">
+
+      <div class="fedit-links-desc" style="margin-bottom:14px">Showcase brands you've worked with. Search by name to find their logo automatically.</div>
+
+      <!-- Search box -->
+      <div class="brand-search-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="brand-search-input" class="brand-search-input" placeholder="Search brands (e.g. Nike, Apple, Notion…)" oninput="searchBrands(this.value)" autocomplete="off"/>
+        <button class="brand-search-clear" id="brand-search-clear" onclick="clearBrandSearch()" style="display:none">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Search results -->
+      <div id="brand-search-results" class="brand-search-results" style="display:none"></div>
+
+      <!-- Added brands -->
+      <div style="margin-top:16px">
+        <div style="font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">Added brands</div>
+        <div id="brand-added-list" class="brand-added-list"></div>
+      </div>
+
+    </div>
+    <div class="fedit-foot">
+      <button class="fedit-cancel" onclick="closeBrandEdit()">Cancel</button>
+      <button class="fedit-save" onclick="saveBrands()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT ME EDIT MODAL -->
+<div class="fedit-bg" id="aboutEditBg" onclick="closeAboutOnBg(event)">
+  <div class="fedit-modal">
+    <div class="fedit-head">
+      <span class="fedit-title">Edit about me</span>
+      <button class="fedit-close" onclick="closeAboutEdit()">×</button>
+    </div>
+    <div class="fedit-body">
+
+      <!-- Profile photo upload -->
+      <div style="margin-bottom:20px">
+        <div class="fedit-links-title" style="margin-bottom:4px">Profile photo</div>
+        <div class="fedit-links-desc" style="margin-bottom:10px">Square photo shown beside your bio. Leave blank to hide.</div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div id="about-photo-preview" style="width:72px;height:72px;border-radius:10px;border:1.5px solid var(--border2);background:var(--bg);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink4)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+          </div>
+          <div style="flex:1">
+            <label class="photo-upload-btn" for="about-photo-file">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload photo
+          </label>
+          <input type="file" id="about-photo-file" accept="image/*" style="display:none" onchange="handlePhotoUpload(this)"/>
+          <input type="hidden" id="about-photo-url"/>
+          <div style="font-size:11px;color:var(--ink4);margin-top:6px">Square photo recommended. JPG, PNG or WebP.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio textarea -->
+      <div style="margin-bottom:22px">
+        <div class="fedit-links-title" style="margin-bottom:4px">Description</div>
+        <div class="fedit-links-desc" style="margin-bottom:10px">Tell viewers about your channel. Shown on your About page.</div>
+        <textarea id="about-bio-input" class="about-textarea" rows="6" maxlength="1000"
+          oninput="updateCharCount(this)"></textarea>
+        <div class="about-charcount" id="char-count">0 / 1000</div>
+      </div>
+
+      <!-- Country dropdown -->
+      <div style="margin-bottom:22px">
+        <div class="fedit-links-title" style="margin-bottom:4px">Country of residence</div>
+        <div class="fedit-links-desc" style="margin-bottom:10px">Shown as a contact detail on your About page.</div>
+        <div class="country-select-wrap">
+          <select id="about-country-input" class="country-select">
+            <option value="">Select country...</option>
+          </select>
+          <div class="country-select-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- More info — fixed: GJW link + email only -->
+      <div>
+        <div class="fedit-links-title" style="margin-bottom:4px">More info</div>
+        <div class="fedit-links-desc" style="margin-bottom:14px">Your GJW channel link and contact email shown below your description.</div>
+
+        <div class="mi-fixed-rows">
+
+          <!-- GJW Channel — locked, auto-populated -->
+          <div class="mi-fixed-row">
+            <div class="mi-fixed-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#1a73d4"/></svg>
+            </div>
+            <div class="mi-fixed-label">GJW Channel</div>
+            <div class="mi-fixed-value">ganjingworld.com/@jonlaw</div>
+            <span class="gjw-lock">Auto</span>
+          </div>
+
+          <!-- Email -->
+          <div class="mi-fixed-row">
+            <div class="mi-fixed-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="mi-fixed-label">Business email</div>
+            <input id="about-email-input" class="mi-fixed-input" type="email"
+              placeholder="your@email.com"/>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="fedit-foot">
+      <button class="fedit-cancel" onclick="closeAboutEdit()">Cancel</button>
+      <button class="fedit-save" onclick="saveAbout()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOLLOWERS EDIT MODAL -->
+<div class="fedit-bg" id="feditBg" onclick="closeFeditOnBg(event)">
+  <div class="fedit-modal">
+    <div class="fedit-head">
+      <span class="fedit-title">Edit social accounts</span>
+      <button class="fedit-close" onclick="closeFollowersEdit()">×</button>
+    </div>
+    <div class="fedit-body">
+
+      <!-- Simple toggle -->
+      <div class="fedit-toggle-row">
+        <div class="fedit-toggle-info">
+          <div class="fedit-toggle-name">Show follower counts</div>
+          <div class="fedit-toggle-desc">Display number alongside each platform icon</div>
+        </div>
+        <label class="fedit-toggle">
+          <input type="checkbox" id="count-toggle" checked onchange="setDisplayMode(this.checked)"/>
+          <span class="fttrack"></span>
+        </label>
+      </div>
+
+      <!-- Links section — YouTube style -->
+      <div class="fedit-links-head">
+        <div class="fedit-links-title">Links</div>
+        <div class="fedit-links-desc">Share your social profiles and links. They'll be visible on your channel about page.</div>
+      </div>
+      <div id="fedit-link-rows"></div>
+      <button class="fedit-add-btn" onclick="addLinkRow()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add link
+      </button>
+
+    </div>
+    <div class="fedit-foot">
+      <button class="fedit-cancel" onclick="closeFollowersEdit()">Cancel</button>
+      <button class="fedit-save" onclick="saveFollowers()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS EDIT MODAL -->
+<div class="fedit-bg" id="prodEditBg" onclick="closeProdEditOnBg(event)">
+  <div class="fedit-modal" style="max-width:520px">
+    <div class="fedit-head">
+      <span class="fedit-title">Products</span>
+      <button class="fedit-close" onclick="closeProdEdit()">×</button>
+    </div>
+    <div class="fedit-body">
+      <div class="fedit-links-desc" style="margin-bottom:18px">Paste any product link — from your Shopify store, Gumroad, Etsy, or anywhere else. We'll fetch the preview automatically.</div>
+
+      <!-- URL input row -->
+      <div style="font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:8px">Add product</div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:6px">Button label</div>
+        <div class="country-select-wrap" style="max-width:200px">
+          <select id="prod-cta-select" class="country-select" style="font-size:13px">
+            <option value="Shop Now">Shop Now</option>
+            <option value="Subscribe Now">Subscribe Now</option>
+            <option value="Watch Now">Watch Now</option>
+            <option value="Learn More">Learn More</option>
+          </select>
+          <div class="country-select-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+      </div>
+      <div class="prod-url-row">
+        <div class="fedit-fields" style="grid-template-columns:1fr">
+          <div class="fedit-field">
+            <div class="fedit-field-label">Product URL</div>
+            <input id="prod-url-input" type="url" placeholder="https://yourstore.com/products/…"
+              oninput="clearProdPreview()"/>
+          </div>
+        </div>
+        <button class="fedit-pull-btn" id="prod-fetch-btn" onclick="fetchProductPreview()" style="height:52px;padding:0 16px;border-radius:10px;font-size:12px">
+          Fetch preview
+        </button>
+      </div>
+
+      <!-- Preview card -->
+      <div id="prod-preview-card" style="display:none;margin-top:12px"></div>
+      <div id="prod-fetch-error" style="display:none;font-size:12px;color:#d93636;margin-top:8px"></div>
+
+      <!-- Added products list -->
+      <div style="margin-top:22px;border-top:1px solid var(--border);padding-top:16px">
+        <div style="font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">Added products</div>
+        <div id="prod-added-list"></div>
+      </div>
+
+    </div>
+    <div class="fedit-foot">
+      <button class="fedit-cancel" onclick="closeProdEdit()">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY VIEW POPUP -->
+<div class="cs-popup-bg" id="csPopupBg" onclick="closeCsPopupOnBg(event)">
+  <div class="cs-popup" id="csPopup">
+    <div class="cs-popup-head">
+      <div class="cs-popup-logo" id="csp-logo"></div>
+      <div class="cs-popup-brand" id="csp-brand"></div>
+      <button class="cs-popup-close" onclick="closeCsPopup()">×</button>
+    </div>
+    <div class="cs-popup-body">
+      <!-- Video carousel -->
+      <div class="cs-carousel" id="csp-carousel"></div>
+      <!-- Deliverables -->
+      <div class="cs-popup-deliverables" id="csp-deliverables-block" style="display:none">
+        <div class="cs-popup-deliv-label">Deliverables & Results</div>
+        <div class="cs-popup-deliv-text" id="csp-deliverables-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY EDIT MODAL -->
+<div class="fedit-bg" id="caseEditBg" onclick="closeCaseEditOnBg(event)">
+  <div class="fedit-modal" style="max-width:540px">
+    <div class="fedit-head">
+      <span class="fedit-title">Case studies</span>
+      <button class="fedit-close" onclick="closeCaseEdit()">×</button>
+    </div>
+    <div class="fedit-body">
+      <div class="fedit-links-desc" style="margin-bottom:18px">Showcase your brand collaboration videos hosted on GJW.</div>
+
+      <!-- Existing case studies list -->
+      <div id="ce-list"></div>
+
+      <!-- Add new button -->
+      <button class="fedit-add-btn" onclick="openAddCase()" id="ce-add-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add case study
+      </button>
+
+      <!-- Add/edit form (shown inline when adding) -->
+      <div id="ce-form" style="display:none;margin-top:16px;border-top:1px solid var(--border);padding-top:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:14px" id="ce-form-title">New case study</div>
+
+        <!-- Brand picker -->
+        <div style="font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:8px">Brand</div>
+        <div class="ce-brand-pick" id="ce-brand-pick" onclick="toggleCeBrandSearch()">
+          <div class="ce-brand-logo" id="ce-brand-logo-preview">
+            <span class="ce-ini" id="ce-brand-ini">+</span>
+          </div>
+          <span class="ce-no-brand" id="ce-brand-label-text">Choose a brand…</span>
+          <span class="ce-brand-change" id="ce-brand-change-lbl" style="display:none">Change</span>
+        </div>
+        <!-- brand search dropdown -->
+        <div id="ce-brand-search-wrap" style="display:none;margin-bottom:14px">
+          <div class="brand-search-wrap" style="margin-bottom:6px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="ce-brand-search" class="brand-search-input" placeholder="Search brand…" oninput="searchCeBrand(this.value)" autocomplete="off"/>
+          </div>
+          <div id="ce-brand-results" class="brand-search-results" style="max-height:200px"></div>
+        </div>
+
+        <!-- Video type auto-detected from URL (/shorts/ = short, /watch/ = long) -->
+        <div style="font-size:11px;color:var(--ink4);margin-bottom:14px;padding:8px 12px;background:var(--bg);border-radius:8px;line-height:1.5">
+          ⚡ Type is auto-detected from the URL — GJW Shorts links are treated as short form, everything else as long form.
+        </div>
+
+        <!-- GJW video URLs -->
+        <div style="font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:8px">GJW video links</div>
+        <div class="fedit-links-desc" style="margin-bottom:10px">Only GJW video URLs are accepted (ganjingworld.com/watch/…)</div>
+        <div id="ce-video-rows"></div>
+        <button class="fedit-add-btn" style="margin-bottom:16px" onclick="addCeVideoRow()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add video link
+        </button>
+
+        <!-- Deliverables textarea -->
+        <div style="font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:8px">Deliverables & results <span style="font-weight:400;color:var(--ink4)">(optional)</span></div>
+        <textarea id="ce-deliverables" class="about-textarea" rows="4" style="min-height:90px" placeholder="Describe what was included in this collaboration and any results (e.g. 1 dedicated video + story · 2.1M views)"></textarea>
+
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
+          <button class="fedit-cancel" onclick="cancelAddCase()">Cancel</button>
+          <button class="fedit-save" onclick="saveCase()">Save case study</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────
+// OWNER SIMULATION — set true to test edit mode
+// In production this comes from session/auth
+// ─────────────────────────────────────────
+const IS_OWNER = true;
+if (IS_OWNER) document.body.classList.add('is-owner');
+
+// ─────────────────────────────────────────
+// PLATFORM DEFINITIONS
+// ─────────────────────────────────────────
+const PLATFORM_DEFS = {
+  gjw:       { label:'GJW',       apiSupport:true,  urlPrefix:'https://ganjingworld.com/@', icon:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#111"/><path d="M8 12l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+  youtube:   { label:'YouTube',   apiSupport:true,  urlPrefix:'https://youtube.com/@',      icon:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#111"/><path d="M17.8 9.2s-.2-1.2-.8-1.7c-.7-.8-1.5-.8-1.9-.8C13 6.5 12 6.5 12 6.5s-1 0-3.1.2c-.4.1-1.2.1-1.9.8-.6.5-.8 1.7-.8 1.7S6 10.5 6 11.8v1.2c0 1.3.2 2.6.2 2.6s.2 1.2.8 1.7c.7.7 1.7.7 2.1.8C10.4 18 12 18 12 18s1 0 3.1-.2c.4-.1 1.2-.1 1.9-.8.6-.5.8-1.7.8-1.7s.2-1.3.2-2.6v-1.2c0-1.3-.2-2.6-.2-2.6zm-6.8 5.3V9.5l5 2.5-5 2.5z" fill="white"/></svg>' },
+  tiktok:    { label:'TikTok',    apiSupport:false, urlPrefix:'https://tiktok.com/@',       icon:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#111"/><path d="M15.5 6.5c.5 1.2 1.5 2 2.5 2.3v2.2c-.9-.1-1.8-.4-2.5-1v4.5a4 4 0 11-4-4c.1 0 .3 0 .4.01V12.6a1.8 1.8 0 101.6 1.8V6.5h2z" fill="white"/></svg>' },
+  instagram: { label:'Instagram', apiSupport:false, urlPrefix:'https://instagram.com/',     icon:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" fill="#111"/><circle cx="12" cy="12" r="4" stroke="white" stroke-width="2" fill="none"/><circle cx="17" cy="7" r="1.4" fill="white"/></svg>' },
+  facebook:  { label:'Facebook',  apiSupport:false, urlPrefix:'https://facebook.com/',      icon:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#111"/><path d="M17 8h-2a3 3 0 00-3 3v2h-2v3h2v6h3v-6h2l1-3h-3v-2a1 1 0 011-1h2V8z" fill="white"/></svg>' },
+  x:         { label:'X',         apiSupport:false, urlPrefix:'https://x.com/',             icon:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#111"/><path d="M17.5 6.5l-11 11M6.5 6.5l11 11" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>' },
+  linkedin:  { label:'LinkedIn',  apiSupport:false, urlPrefix:'https://linkedin.com/in/',   icon:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#111"/><path d="M7 10v7M7 7v.5M12 17v-4a2 2 0 014 0v4M12 10v7" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>' },
+};
+
+// ─────────────────────────────────────────
+// SOCIAL DATA — GJW always first
+// ─────────────────────────────────────────
+let socialData = {
+  displayMode: 'count',
+  platforms: [
+    { id:'gjw', handle:'', count:'', link:'https://ganjingworld.com/@yourchannel', enabled:true, updatedAt:'' },
+  ]
+};
+let editData = null;
+let currentDisplayMode = 'count';
+
+// ─────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────
+function formatDate(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+function calcTotal(platforms) {
+  let t = 0;
+  platforms.filter(p=>p.enabled).forEach(p => {
+    const s = p.count || '';
+    let n = parseFloat(s);
+    if (s.match(/m/i)) n *= 1e6;
+    else if (s.match(/k/i)) n *= 1e3;
+    if (!isNaN(n)) t += n;
+  });
+  if (t >= 1e6) return (t/1e6).toFixed(1).replace('.0','') + 'M';
+  if (t >= 1e3) return (t/1e3).toFixed(1).replace('.0','') + 'K';
+  return Math.round(t).toString();
+}
+function latestDate(platforms) {
+  const dates = platforms.filter(p=>p.enabled&&p.updatedAt).map(p=>p.updatedAt).sort().reverse();
+  return dates[0] ? formatDate(dates[0]) : '';
+}
+
+// ─────────────────────────────────────────
+// RENDER PUBLIC DISPLAY
+// ─────────────────────────────────────────
+function renderFollowers() {
+  const enabled = socialData.platforms.filter(p=>p.enabled);
+  const total = calcTotal(enabled);
+  const section = document.querySelector('.followers-section');
+  // Hide entire section if no real follower counts entered yet
+  const hasAnyCount = enabled.some(function(p){ return p.count && p.count !== '0' && p.count !== ''; });
+  if (section) section.style.display = hasAnyCount ? '' : 'none';
+  document.getElementById('total-num').textContent = total;
+  document.getElementById('followers-updated').textContent = latestDate(enabled) ? 'Updated ' + latestDate(enabled) : '';
+  const showCount = socialData.displayMode === 'count';
+  document.getElementById('platform-followers-display').innerHTML = enabled.map(p => {
+    const def = PLATFORM_DEFS[p.id] || {};
+    const icon = def.icon || `<span style="font-size:11px;font-weight:700;color:#fff;background:#555;border-radius:4px;padding:2px 5px">${(p.title||p.id||'').slice(0,2).toUpperCase()}</span>`;
+    const label = p.title || def.label || p.id;
+    return `<a class="pf-item" href="${p.link||'#'}" target="_blank" title="${label}">
+      <div class="pf-icon">${icon}</div>
+      ${showCount && p.count ? `<span class="pf-count">${p.count}</span>` : ''}
+    </a>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────
+// EDIT MODAL
+// ─────────────────────────────────────────
+
+// editLinks: array of {title, url} — what's shown in the modal
+let editLinks = [];
+let editShowCount = true;
+
+function openFollowersEdit() {
+  editShowCount = socialData.displayMode === 'count';
+  document.getElementById('count-toggle').checked = editShowCount;
+
+  // build editLinks from socialData.platforms (skip GJW which is locked)
+  editLinks = socialData.platforms
+    .filter(p => p.id !== 'gjw')
+    .map(p => ({ title: PLATFORM_DEFS[p.id]?.label || p.id, url: p.link || '', count: p.count || '', id: p.id, updatedAt: p.updatedAt || '' }));
+
+  renderLinkRows();
+  document.getElementById('feditBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFollowersEdit() {
+  document.getElementById('feditBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeFeditOnBg(e) { if(e.target===document.getElementById('feditBg')) closeFollowersEdit(); }
+
+function setDisplayMode(checked) {
+  editShowCount = checked;
+}
+
+function renderLinkRows() {
+  const container = document.getElementById('fedit-link-rows');
+
+  // GJW locked row always first
+  const gjw = socialData.platforms.find(p=>p.id==='gjw') || {link:'https://ganjingworld.com/@jonlaw', count:'374'};
+  const gjwRow = `<div class="fedit-link-row gjw-default">
+    <div class="fedit-drag">≡</div>
+    <div class="fedit-fields">
+      <div class="fedit-field">
+        <div class="fedit-field-label">Link title (required)</div>
+        <input value="GJW Channel" readonly/>
+      </div>
+      <div class="fedit-field">
+        <div class="fedit-field-label">URL (required)</div>
+        <input value="${gjw.link||'https://ganjingworld.com/@jonlaw'}" readonly/>
+      </div>
+    </div>
+    <span class="gjw-lock">Default</span>
+  </div>`;
+
+  const userRows = editLinks.map((lk, i) => `
+    <div class="fedit-link-row" data-idx="${i}">
+      <div class="fedit-drag">≡</div>
+      <div class="fedit-fields">
+        <div class="fedit-field">
+          <div class="fedit-field-label">Link title (required)</div>
+          <input placeholder="e.g. YouTube" value="${lk.title||''}" oninput="editLinks[${i}].title=this.value"/>
+        </div>
+        <div class="fedit-field">
+          <div class="fedit-field-label">URL (required)</div>
+          <input type="url" placeholder="https://..." value="${lk.url||''}" oninput="editLinks[${i}].url=this.value"/>
+        </div>
+      </div>
+      <button class="fedit-del" onclick="removeLinkRow(${i})" title="Remove">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>`).join('');
+
+  container.innerHTML = gjwRow + userRows;
+}
+
+function addLinkRow() {
+  editLinks.push({ title:'', url:'', count:'', id:'', updatedAt:'' });
+  renderLinkRows();
+  // focus the new title input
+  const rows = document.querySelectorAll('.fedit-link-row:not(.gjw-default)');
+  const last = rows[rows.length - 1];
+  if (last) last.querySelector('input')?.focus();
+}
+
+function removeLinkRow(i) {
+  editLinks.splice(i, 1);
+  renderLinkRows();
+}
+
+function saveFollowers() {
+  socialData.displayMode = editShowCount ? 'count' : 'icon';
+
+  // Rebuild platforms: GJW first (always), then user-added links
+  const gjwEntry = socialData.platforms.find(p=>p.id==='gjw') || {id:'gjw',count:'374',link:'https://ganjingworld.com/@jonlaw',enabled:true,updatedAt:'2026-04-10'};
+  gjwEntry.enabled = true;
+
+  const userPlatforms = editLinks
+    .filter(lk => lk.url.trim())
+    .map(lk => {
+      // try to match to a known platform by URL or title
+      const matchId = Object.keys(PLATFORM_DEFS).find(id =>
+        lk.url.includes(id) || lk.title.toLowerCase().includes(id)
+      ) || 'custom_' + Math.random().toString(36).slice(2,6);
+      const existing = socialData.platforms.find(p=>p.id===matchId);
+      return {
+        id: matchId,
+        handle: existing?.handle || '',
+        count: existing?.count || lk.count || '',
+        link: lk.url.trim(),
+        title: lk.title.trim(),
+        enabled: true,
+        updatedAt: existing?.updatedAt || new Date().toISOString().slice(0,10)
+      };
+    });
+
+  socialData.platforms = [gjwEntry, ...userPlatforms];
+  renderChannel();
+renderFollowers();
+  closeFollowersEdit();
+}
+
+// ─────────────────────────────────────────
+// TABS
+// ─────────────────────────────────────────
+function setTab(el) {
+  document.querySelectorAll('.ch-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ─────────────────────────────────────────
+// LINKS DATA
+// ─────────────────────────────────────────
+const LINKS_VISIBLE = 4;
+
+let linksData = [
+  { id:'l1', title:'Watch my channel on GJW', sub:'Ad-free · family-safe · privacy-first', url:'https://ganjingworld.com/@yourchannel', visible:true, featured:true },
+];
+
+let editLinkItems = [];
+let linksExpanded = false;
+
+function linkFavicon(url) {
+  // Return empty — we'll use a styled icon instead
+  return '';
+}
+function linkIconBg(url) {
+  const u = (url||'').toLowerCase();
+  if (u.includes('ganjingworld')) return 'rgba(26,115,212,.12)';
+  if (u.includes('youtube'))     return '#fff0f0';
+  if (u.includes('tiktok'))      return '#f5f5f5';
+  if (u.includes('instagram'))   return '#fdf0f8';
+  if (u.includes('facebook'))    return '#e8effe';
+  if (u.includes('mailto'))      return '#f5f5f5';
+  return '#f4f4f4';
+}
+
+// ── PUBLIC RENDER ──
+function renderLinks() {
+  const container = document.getElementById('lib-list-display');
+  const moreWrap  = document.getElementById('lib-more-wrap');
+  const moreBtn   = document.getElementById('linksMoreBtn');
+  const empty     = document.getElementById('links-empty-state');
+  if (!container) return;
+  container.innerHTML = '';
+  const shown = linksData.filter(function(l){ return l.visible; });
+  if (empty) empty.style.display = shown.length === 0 ? '' : 'none';
+  shown.forEach(function(lk, i) {
+    const visible = i < LINKS_VISIBLE || linksExpanded;
+    const isFeatured = lk.featured;
+    const a = document.createElement('a');
+    a.className = 'lib-item' + (isFeatured ? ' lib-item-featured' : '');
+    a.href = lk.url || '#';
+    a.target = lk.url && lk.url.startsWith('mailto:') ? '_self' : '_blank';
+    if (!visible) a.style.display = 'none';
+    // icon
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'lib-icon';
+    iconDiv.style.background = isFeatured ? 'rgba(255,255,255,.15)' : linkIconBg(lk.url);
+    const fav = linkFavicon(lk.url);
+    if (fav && !lk.url.startsWith('mailto:') && lk.url !== '#') {
+      const img = document.createElement('img');
+      img.src = fav; img.width = 22; img.height = 22;
+      img.style.cssText = 'object-fit:contain;border-radius:4px';
+      img.onerror = function(){ this.remove(); };
+      iconDiv.appendChild(img);
+    } else {
+      iconDiv.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="' + (isFeatured?'rgba(255,255,255,.7)':'var(--ink3)') + '" stroke-width="1.8" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>';
+    }
+    a.appendChild(iconDiv);
+    // body
+    const body = document.createElement('div'); body.className = 'lib-body';
+    const titleEl = document.createElement('div'); titleEl.className = 'lib-title'; titleEl.textContent = lk.title;
+    body.appendChild(titleEl);
+    if (lk.sub) { const sub = document.createElement('div'); sub.className = 'lib-sub'; sub.textContent = lk.sub; body.appendChild(sub); }
+    a.appendChild(body);
+    // arrow
+    const arr = document.createElement('div'); arr.className = 'lib-arrow';
+    arr.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="' + (isFeatured?'white':'currentColor') + '" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    a.appendChild(arr);
+    container.appendChild(a);
+  });
+  const hiddenCount = shown.length - LINKS_VISIBLE;
+  if (hiddenCount > 0) {
+    moreWrap.style.display = '';
+    moreBtn.innerHTML = linksExpanded
+      ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg> Show less'
+      : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg> Show more (' + hiddenCount + ')';
+  } else {
+    moreWrap.style.display = 'none';
+  }
+}
+function toggleLinks() { linksExpanded = !linksExpanded; renderLinks(); }
+
+// ── OG FETCH SIMULATION ──
+const LINK_OG_MOCK = {
+  'youtube.com':      { title:'YouTube Channel', sub:'Watch my videos on YouTube' },
+  'tiktok.com':       { title:'TikTok',          sub:'Short-form content' },
+  'instagram.com':    { title:'Instagram',        sub:'Photos and reels' },
+  'twitter.com':      { title:'Twitter / X',      sub:'Follow me on X' },
+  'x.com':            { title:'X (Twitter)',       sub:'Follow me on X' },
+  'facebook.com':     { title:'Facebook',          sub:'Follow my Facebook page' },
+  'linkedin.com':     { title:'LinkedIn',          sub:'Connect with me on LinkedIn' },
+  'ganjingworld.com': { title:'GJW+ Premium Content', sub:'Watch on Gan Jing World', aspectRatio:'16/9' },
+  'shopify.com':      { title:'My Shopify Store',  sub:'Shop my products' },
+  'gumroad.com':      { title:'Gumroad',           sub:'My digital products' },
+  'patreon.com':      { title:'Patreon',           sub:'Support my work' },
+  'substack.com':     { title:'Newsletter',        sub:'Subscribe to my newsletter' },
+  'beehiiv.com':      { title:'Newsletter',        sub:'Subscribe to my newsletter' },
+  'calendly.com':     { title:'Book a call',       sub:'Schedule time with me' },
+};
+
+function fetchAndAddLink() {
+  const rawUrl = document.getElementById('links-new-url').value.trim();
+  if (!rawUrl) return;
+  const btn = document.querySelector('#linksEditBg .fedit-pull-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinning">↻</span>';
+
+  setTimeout(function() {
+    btn.disabled = false;
+    btn.innerHTML = 'Add';
+    let title = rawUrl, sub = '';
+    try {
+      const domain = new URL(rawUrl).hostname.replace('www.','');
+      const match = Object.keys(LINK_OG_MOCK).find(function(k){ return domain.includes(k); });
+      if (match) { title = LINK_OG_MOCK[match].title; sub = LINK_OG_MOCK[match].sub; }
+      else { title = domain.replace(/\.[a-z]+$/, '').replace(/[-_]/g,' ').replace(/\w/g, function(l){ return l.toUpperCase(); }); }
+    } catch(e) {}
+    editLinkItems.push({ id:'l'+Date.now(), title:title, sub:sub, url:rawUrl, visible:true, featured:false });
+    document.getElementById('links-new-url').value = '';
+    renderLinkEditCards();
+  }, 600);
+}
+
+// ── EDIT MODAL ──
+let dragSrcIdx = null;
+
+function openLinksEdit() {
+  editLinkItems = linksData.map(function(l){ return Object.assign({},l); });
+  document.getElementById('links-new-url').value = '';
+  renderLinkEditCards();
+  document.getElementById('linksEditBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLinksEdit() {
+  document.getElementById('linksEditBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLinksEditOnBg(e){ if(e.target===document.getElementById('linksEditBg')) closeLinksEdit(); }
+
+function renderLinkEditCards() {
+  const container = document.getElementById('links-edit-rows');
+  container.innerHTML = '';
+  editLinkItems.forEach(function(lk, i) {
+    const fav = linkFavicon(lk.url);
+    const card = document.createElement('div');
+    card.className = 'link-edit-card';
+    card.setAttribute('draggable','true');
+    card.dataset.idx = i;
+
+    // drag handle
+    const handle = document.createElement('div');
+    handle.className = 'link-drag-handle';
+    handle.textContent = '⋮⋮';
+    card.appendChild(handle);
+
+    // favicon
+    if (fav && !lk.url.startsWith('mailto:') && lk.url !== '#') {
+      const img = document.createElement('img');
+      img.src = fav; img.className = 'link-card-favicon';
+      img.onerror = function(){ this.remove(); };
+      card.appendChild(img);
+    }
+
+    // main content
+    const main = document.createElement('div');
+    main.className = 'link-card-main';
+
+    // title (editable)
+    const titleIn = document.createElement('input');
+    titleIn.className = 'link-edit-inline title';
+    titleIn.value = lk.title || '';
+    titleIn.placeholder = 'Link title';
+    titleIn.addEventListener('input', function(){ editLinkItems[i].title = this.value; });
+    main.appendChild(titleIn);
+
+    // subtitle (editable, optional)
+    const subIn = document.createElement('input');
+    subIn.className = 'link-edit-inline subtitle';
+    subIn.value = lk.sub || '';
+    subIn.placeholder = 'Subtitle (optional)';
+    subIn.addEventListener('input', function(){ editLinkItems[i].sub = this.value; });
+    main.appendChild(subIn);
+
+    card.appendChild(main);
+
+    // visibility toggle
+    const togWrap = document.createElement('label');
+    togWrap.className = 'link-vis-toggle';
+    togWrap.title = 'Show / hide';
+    const togIn = document.createElement('input');
+    togIn.type = 'checkbox';
+    togIn.checked = lk.visible !== false;
+    togIn.addEventListener('change', function(){ editLinkItems[i].visible = this.checked; });
+    const togTrack = document.createElement('span');
+    togTrack.className = 'link-vis-track';
+    togWrap.appendChild(togIn);
+    togWrap.appendChild(togTrack);
+    card.appendChild(togWrap);
+
+    // delete
+    const del = document.createElement('button');
+    del.className = 'link-card-del';
+    del.title = 'Remove';
+    del.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>';
+    del.addEventListener('click', function(){
+      editLinkItems.splice(i, 1);
+      renderLinkEditCards();
+    });
+    card.appendChild(del);
+
+    // drag events
+    card.addEventListener('dragstart', function(e){
+      dragSrcIdx = parseInt(this.dataset.idx);
+      this.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    card.addEventListener('dragend', function(){
+      this.classList.remove('dragging');
+      document.querySelectorAll('.link-edit-card').forEach(function(c){ c.classList.remove('drag-over'); });
+    });
+    card.addEventListener('dragover', function(e){
+      e.preventDefault();
+      document.querySelectorAll('.link-edit-card').forEach(function(c){ c.classList.remove('drag-over'); });
+      this.classList.add('drag-over');
+    });
+    card.addEventListener('drop', function(e){
+      e.preventDefault();
+      const tgt = parseInt(this.dataset.idx);
+      if (dragSrcIdx === null || dragSrcIdx === tgt) return;
+      const moved = editLinkItems.splice(dragSrcIdx, 1)[0];
+      editLinkItems.splice(tgt, 0, moved);
+      dragSrcIdx = null;
+      renderLinkEditCards();
+    });
+
+    container.appendChild(card);
+  });
+}
+
+// keep old function name used in HTML if any
+function addLinkEditRow() { fetchAndAddLink(); }
+
+function saveLinks() {
+  linksData = editLinkItems.filter(function(l){ return l.title || l.url; });
+  linksExpanded = false;
+  renderLinks();
+  closeLinksEdit();
+}
+
+// ─────────────────────────────────────────
+// BRAND PARTNERS
+// ─────────────────────────────────────────
+let brandData = [];
+
+let editBrands = [];
+const BRAND_VISIBLE = 6;
+
+const POPULAR_BRANDS = [
+  {name:'Apple',domain:'apple.com'},{name:'Google',domain:'google.com'},{name:'Microsoft',domain:'microsoft.com'},
+  {name:'Amazon',domain:'amazon.com'},{name:'Meta',domain:'meta.com'},{name:'Netflix',domain:'netflix.com'},
+  {name:'Spotify',domain:'spotify.com'},{name:'Nike',domain:'nike.com'},{name:'Adidas',domain:'adidas.com'},
+  {name:'Samsung',domain:'samsung.com'},{name:'Tesla',domain:'tesla.com'},{name:'Uber',domain:'uber.com'},
+  {name:'Airbnb',domain:'airbnb.com'},{name:'Notion',domain:'notion.so'},{name:'Shopify',domain:'shopify.com'},
+  {name:'HubSpot',domain:'hubspot.com'},{name:'Stripe',domain:'stripe.com'},{name:'Zapier',domain:'zapier.com'},
+  {name:'Monday.com',domain:'monday.com'},{name:'Calendly',domain:'calendly.com'},{name:'Atlassian',domain:'atlassian.com'},
+  {name:'Canva',domain:'canva.com'},{name:'Figma',domain:'figma.com'},{name:'Slack',domain:'slack.com'},
+  {name:'Zoom',domain:'zoom.us'},{name:'Dropbox',domain:'dropbox.com'},{name:'Adobe',domain:'adobe.com'},
+  {name:'Squarespace',domain:'squarespace.com'},{name:'Wix',domain:'wix.com'},{name:'Webflow',domain:'webflow.com'},
+  {name:'LinkedIn',domain:'linkedin.com'},{name:'Pinterest',domain:'pinterest.com'},{name:'Snapchat',domain:'snapchat.com'},
+  {name:'TikTok',domain:'tiktok.com'},{name:'YouTube',domain:'youtube.com'},{name:'Twitch',domain:'twitch.tv'},
+  {name:'Discord',domain:'discord.com'},{name:'Reddit',domain:'reddit.com'},{name:'PayPal',domain:'paypal.com'},
+  {name:'Revolut',domain:'revolut.com'},{name:'Square',domain:'squareup.com'},{name:'Lululemon',domain:'lululemon.com'},
+  {name:'H&M',domain:'hm.com'},{name:'Zara',domain:'zara.com'},{name:'UNIQLO',domain:'uniqlo.com'},
+  {name:'Sephora',domain:'sephora.com'},{name:"L'Oréal",domain:'loreal.com'},{name:'Dove',domain:'dove.com'},
+  {name:'Peloton',domain:'onepeloton.com'},{name:'NordVPN',domain:'nordvpn.com'},{name:'Skillshare',domain:'skillshare.com'},
+  {name:'Coursera',domain:'coursera.com'},{name:'Udemy',domain:'udemy.com'},{name:'Duolingo',domain:'duolingo.com'},
+  {name:'Grammarly',domain:'grammarly.com'},{name:'GoDaddy',domain:'godaddy.com'},{name:'Klaviyo',domain:'klaviyo.com'},
+  {name:'Mailchimp',domain:'mailchimp.com'},{name:'ConvertKit',domain:'convertkit.com'},{name:'Beehiiv',domain:'beehiiv.com'},
+  {name:'Substack',domain:'substack.com'},{name:'Patreon',domain:'patreon.com'},{name:'Ko-fi',domain:'ko-fi.com'},
+  {name:'Gumroad',domain:'gumroad.com'},{name:'Teachable',domain:'teachable.com'},{name:'Thinkific',domain:'thinkific.com'},
+];
+
+function logoUrl(domain) { return 'https://www.google.com/s2/favicons?domain=' + domain + '&sz=64'; }
+
+function initials(name) {
+  return name.split(/\s+/).map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2);
+}
+
+// Generate consistent pastel bg + dark text color from brand name
+function brandColor(name) {
+  // hash the name to a hue 0-360
+  var hash = 0;
+  for (var i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    hash = hash & hash;
+  }
+  var hue = Math.abs(hash) % 360;
+  var bg  = 'hsl(' + hue + ',55%,88%)';
+  var fg  = 'hsl(' + hue + ',40%,32%)';
+  return { bg: bg, fg: fg };
+}
+
+function logoImg(domain, name, size) {
+  const col = brandColor(name);
+  return '<span class="br-init" style="display:flex;background:' + col.bg + ';color:' + col.fg + '">' + initials(name) + '</span>';
+}
+
+function renderBrands() {
+  const grid = document.getElementById('brand-grid-display');
+  const moreRow = document.getElementById('brand-more-row');
+  const empty = document.getElementById('brand-empty-state');
+  if (!grid) return;
+  if (empty) empty.style.display = !brandData.length ? '' : 'none';
+  if (!brandData.length) { grid.innerHTML=''; if(moreRow) moreRow.style.display='none'; return; }
+  grid.innerHTML = brandData.map(function(b, i) {
+    const cls = 'brand-item' + (i >= BRAND_VISIBLE ? ' brand-extra' : '');
+    const st  = i >= BRAND_VISIBLE ? ' style="display:none"' : '';
+    const col = brandColor(b.name);
+    const fav = logoUrl(b.domain);
+    return '<div class="' + cls + '"' + st + '>' +
+      '<div class="brand-logo">' +
+        '<img src="' + fav + '" class="brand-fav-img" alt="' + b.name + '"/>' +
+        '<span class="brand-initials" style="display:none;background:' + col.bg + ';color:' + col.fg + '">' + initials(b.name) + '</span>' +
+      '</div>' +
+      '<div class="brand-name">' + b.name + '</div>' +
+    '</div>';
+  }).join('');
+  // Check each favicon: if generic globe (16x16 Google default) or error, show initials instead
+  setTimeout(function() {
+    grid.querySelectorAll('.brand-fav-img').forEach(function(img) {
+      function check() {
+        const isGeneric = img.naturalWidth <= 16 && img.naturalHeight <= 16;
+        const failed = !img.complete || img.naturalWidth === 0;
+        if (failed || isGeneric) {
+          img.style.display = 'none';
+          const span = img.nextElementSibling;
+          if (span) span.style.display = 'flex';
+        }
+      }
+      if (img.complete) { check(); }
+      else {
+        img.onload = check;
+        img.onerror = function() {
+          this.style.display = 'none';
+          const span = this.nextElementSibling;
+          if (span) span.style.display = 'flex';
+        };
+      }
+    });
+  }, 400);
+  if (moreRow) moreRow.style.display = brandData.length > BRAND_VISIBLE ? 'flex' : 'none';
+}
+
+function toggleBrands() {
+  const extras = document.querySelectorAll('.brand-extra');
+  const btn = document.getElementById('showMoreBtn');
+  const open = btn.classList.contains('open');
+  extras.forEach(function(e){ e.style.display = open ? 'none' : 'flex'; });
+  btn.classList.toggle('open', !open);
+  btn.innerHTML = open
+    ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg> Show more'
+    : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg> Show less';
+}
+
+// ── EDIT MODAL ──
+function openBrandEdit() {
+  editBrands = brandData.map(b=>({...b}));
+  document.getElementById('brand-search-input').value = '';
+  document.getElementById('brand-search-results').style.display = 'none';
+  document.getElementById('brand-search-clear').style.display = 'none';
+  renderAddedBrands();
+  document.getElementById('brandEditBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=>document.getElementById('brand-search-input').focus(), 200);
+}
+function closeBrandEdit() {
+  document.getElementById('brandEditBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeBrandOnBg(e) { if(e.target===document.getElementById('brandEditBg')) closeBrandEdit(); }
+
+let searchTimer;
+function searchBrands(q) {
+  const clear = document.getElementById('brand-search-clear');
+  const results = document.getElementById('brand-search-results');
+  clear.style.display = q ? 'flex' : 'none';
+  clearTimeout(searchTimer);
+  if (!q.trim()) { results.style.display = 'none'; return; }
+
+  // filter from popular list
+  const matches = POPULAR_BRANDS.filter(b =>
+    b.name.toLowerCase().includes(q.toLowerCase()) ||
+    b.domain.toLowerCase().includes(q.toLowerCase())
+  ).slice(0, 10);
+
+  results.style.display = 'block';
+
+  if (!matches.length) {
+    // Allow adding custom brand by domain
+    const guessedDomain = q.toLowerCase().includes('.') ? q.toLowerCase() : q.toLowerCase().replace(/\s+/g,'')+'.com';
+    results.innerHTML = `<div class="brand-search-empty">
+      <strong>No results for "${q}"</strong>
+      <span>Try the website domain, or <a href="#" style="color:#1a73d4" onclick="addCustomBrand('${q}','${guessedDomain}');return false">add "${q}" manually</a></span>
+    </div>`;
+    return;
+  }
+
+  results.innerHTML = matches.map(b => {
+    const added = editBrands.some(e=>e.domain===b.domain);
+    return `<div class="brand-result-row${added?' already-added':''}" onclick="${added?'':` addBrand('${b.name}','${b.domain}')`}">
+      <div class="br-logo">${logoImg(b.domain, b.name)}</div>
+      <div class="br-info">
+        <div class="br-name">${b.name}</div>
+        <div class="br-domain">${b.domain}</div>
+      </div>
+      ${added
+        ? `<span style="font-size:11px;color:var(--ink4)">Added</span>`
+        : `<span class="br-add">+ Add</span>`}
+    </div>`;
+  }).join('');
+}
+
+function clearBrandSearch() {
+  document.getElementById('brand-search-input').value = '';
+  document.getElementById('brand-search-results').style.display = 'none';
+  document.getElementById('brand-search-clear').style.display = 'none';
+  document.getElementById('brand-search-input').focus();
+}
+
+function addBrand(name, domain) {
+  if (editBrands.some(b=>b.domain===domain)) return;
+  editBrands.push({name, domain});
+  renderAddedBrands();
+  // refresh results to mark as added
+  searchBrands(document.getElementById('brand-search-input').value);
+}
+
+function addCustomBrand(name, domain) {
+  addBrand(name.trim(), domain.trim());
+  clearBrandSearch();
+}
+
+function removeBrand(domain) {
+  editBrands = editBrands.filter(b=>b.domain!==domain);
+  renderAddedBrands();
+  searchBrands(document.getElementById('brand-search-input').value);
+}
+
+function renderAddedBrands() {
+  const el = document.getElementById('brand-added-list');
+  if (!editBrands.length) {
+    el.innerHTML = `<div class="brand-empty-hint">No brands added yet. Search above to add your first brand partner.</div>`;
+    return;
+  }
+  el.innerHTML = editBrands.map(b=>`
+    <div class="brand-chip">
+      <div class="bc-logo">${logoImg(b.domain, b.name, 30)}</div>
+      <span class="bc-name">${b.name}</span>
+      <button class="bc-remove" onclick="removeBrand('${b.domain}')" title="Remove">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>`).join('');
+}
+
+function saveBrands() {
+  brandData = [...editBrands];
+  renderBrands();
+  closeBrandEdit();
+}
+
+// ─────────────────────────────────────────
+// CASE STUDIES DATA
+// ─────────────────────────────────────────
+let caseData = [];
+
+let editCases = [];
+let ceEditingId = null; // null = new, string = editing existing
+let ceCurrentBrand = null; // {name, domain}
+let ceCurrentType = 'long';
+let ceVideoLinks = [{url:''}];
+
+// ── PUBLIC RENDER ──
+function renderCases() {
+  const longGrid  = document.getElementById('cs-long-grid');
+  const shortGrid = document.getElementById('cs-short-grid');
+  const longWrap  = document.getElementById('cs-long-wrap');
+  const shortWrap = document.getElementById('cs-short-wrap');
+  const csEmpty   = document.getElementById('cs-empty-state');
+  if (!longGrid || !shortGrid) return;
+
+  const long  = caseData.filter(function(c){ return c.type==='long'; });
+  const short = caseData.filter(function(c){ return c.type==='short'; });
+  const hasAny = long.length + short.length > 0;
+
+  if (csEmpty) csEmpty.style.display = hasAny ? 'none' : '';
+  longWrap.style.display  = long.length  ? '' : 'none';
+  shortWrap.style.display = short.length ? '' : 'none';
+
+  longGrid.innerHTML  = long.map(function(c){ return caseCard(c); }).join('');
+  shortGrid.innerHTML = short.map(function(c){ return caseCard(c); }).join('');
+
+  setTimeout(function(){ updateLongArrows(); updateShortArrows(); }, 100);
+}
+
+
+function buildThumbInner(thumb, bg, isShort) {
+  var wrap = document.createElement('div');
+  wrap.style.cssText = 'position:relative;width:100%;height:100%';
+
+  if (thumb) {
+    var img = document.createElement('img');
+    img.src = thumb;
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block';
+    img.onerror = function() { this.style.display = 'none'; wrap.style.background = bg; };
+    wrap.appendChild(img);
+  } else {
+    wrap.style.background = bg;
+    wrap.style.display = 'flex';
+    wrap.style.alignItems = 'center';
+    wrap.style.justifyContent = 'center';
+    var ph = document.createElement('div');
+    ph.className = 'cs-play-btn';
+    var tri = document.createElement('div');
+    tri.className = 'cs-play-tri';
+    ph.appendChild(tri);
+    wrap.appendChild(ph);
+  }
+
+  var overlay = document.createElement('div');
+  overlay.className = 'cs-play-overlay';
+  var obtn = document.createElement('div');
+  obtn.className = 'cs-play-btn';
+  var otri = document.createElement('div');
+  otri.className = 'cs-play-tri';
+  obtn.appendChild(otri);
+  overlay.appendChild(obtn);
+  wrap.appendChild(overlay);
+
+  if (isShort) {
+    var badge = document.createElement('div');
+    badge.className = 'cs-short-badge';
+    badge.textContent = 'SHORT';
+    wrap.appendChild(badge);
+  }
+
+  return wrap.outerHTML;
+}
+
+function caseCard(c) {
+  const isShort = c.type === 'short';
+  const thumbClass = isShort ? 'cs-thumb-portrait' : 'cs-thumb-landscape';
+  // thumbnail: real image if available, else gradient
+  const bg = c.thumbGradient || 'linear-gradient(160deg,#111,#1a1a2e)';
+  const thumbInner = buildThumbInner(c.thumb, bg, isShort);
+  return '<div class="cs-card ' + (isShort ? 'cs-card-short' : '') + '" data-csid="' + c.id + '" onclick="openCsPopup(this.dataset.csid)">' +
+    '<div class="' + thumbClass + '">' + thumbInner + '</div>' +
+    '<div class="cs-card-foot">' +
+      '<div class="cs-brand-name">' +
+        '<span class="cs-brand-chip">' + c.brand + '</span>' +
+      '</div>' +
+      '<button class="cs-view-btn">View Info</button>' +
+    '</div>' +
+  '</div>';
+}
+
+// ── VIEW POPUP ──
+let csCurrentSlide = 0;
+let csCurrentVideos = [];
+
+function openCsPopup(id) {
+  const c = caseData.find(x=>x.id===id);
+  if (!c) return;
+  csCurrentVideos = c.videos || [];
+  csCurrentSlide = 0;
+  // store reference so carousel can access thumb + type
+  csCurrentVideos._caseRef = c;
+
+  // Logo
+  const logoEl = document.getElementById('csp-logo');
+  const popCol = brandColor(c.brand);
+  logoEl.innerHTML = '<span class="cs-pop-ini" style="display:flex;font-size:14px;font-weight:700;color:' + popCol.fg + '">' + initials(c.brand) + '</span>';
+  logoEl.style.background = popCol.bg;
+  logoEl.style.borderColor = popCol.bg;
+  document.getElementById('csp-brand').textContent = c.brand;
+
+  // Carousel
+  renderCsCarousel();
+
+  // Deliverables
+  const delBlock = document.getElementById('csp-deliverables-block');
+  const delText  = document.getElementById('csp-deliverables-text');
+  if (c.deliverables && c.deliverables.trim()) {
+    delBlock.style.display = '';
+    delText.textContent = c.deliverables.trim();
+  } else {
+    delBlock.style.display = 'none';
+  }
+
+  document.getElementById('csPopupBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderCsCarousel() {
+  const container = document.getElementById('csp-carousel');
+  if (!csCurrentVideos.length) { container.innerHTML = ''; return; }
+
+  const activeCaseEntry = csCurrentVideos._caseRef || caseData.find(function(cd){ return cd.videos === csCurrentVideos; });
+  const isShort = activeCaseEntry ? activeCaseEntry.type === 'short' : false;
+  const ratio = isShort ? '9/16' : '16/9';
+  const maxW  = isShort ? 'max-width:200px;margin:0 auto' : '';
+  const thumb = activeCaseEntry ? (activeCaseEntry.thumb || '') : '';
+
+  const slides = csCurrentVideos.map(function(v, i) {
+    const bg = thumb
+      ? 'background:url(' + thumb + ') center/cover no-repeat #111'
+      : 'background:linear-gradient(160deg,#111,#1a1a2e)';
+    return '<div class="cs-carousel-slide' + (i===0?' active':'') + '">' +
+      '<a href="' + v.url + '" target="_blank" style="display:block;text-decoration:none">' +
+        '<div style="aspect-ratio:' + ratio + ';' + maxW + ';' + bg + ';display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;position:relative">' +
+          '<div class="cs-play-btn" style="width:52px;height:52px;background:rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.8)">' +
+            '<div class="cs-play-tri" style="border-top-width:9px;border-bottom-width:9px;border-left-width:16px"></div>' +
+          '</div>' +
+          '<span style="font-size:11px;color:rgba(255,255,255,.75);background:rgba(0,0,0,.45);padding:5px 12px;border-radius:20px;margin-top:4px">Watch on GJW ↗</span>' +
+        '</div>' +
+      '</a>' +
+    '</div>';
+  }).join('');
+
+  const arrows = csCurrentVideos.length > 1
+    ? '<button class="cs-carousel-arrow prev" onclick="slideCsCarousel(-1)">‹</button>' +
+      '<button class="cs-carousel-arrow next" onclick="slideCsCarousel(1)">›</button>' : '';
+  const dots = csCurrentVideos.length > 1
+    ? '<div class="cs-carousel-nav">' + csCurrentVideos.map(function(_,i){
+        return '<div class="cs-nav-dot' + (i===0?' active':'') + '" onclick="goToCsSlide(' + i + ')"></div>';
+      }).join('') + '</div>' : '';
+
+  container.innerHTML = '<div class="cs-carousel-track" style="position:relative">' + arrows + slides + '</div>' + dots;
+}
+
+function slideCsCarousel(dir) {
+  goToCsSlide((csCurrentSlide + dir + csCurrentVideos.length) % csCurrentVideos.length);
+}
+function goToCsSlide(n) {
+  const slides = document.querySelectorAll('.cs-carousel-slide');
+  const dots   = document.querySelectorAll('.cs-nav-dot');
+  slides.forEach((s,i)=>s.classList.toggle('active',i===n));
+  dots.forEach((d,i)=>d.classList.toggle('active',i===n));
+  csCurrentSlide = n;
+}
+
+function closeCsPopup() {
+  document.getElementById('csPopupBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeCsPopupOnBg(e) { if(e.target===document.getElementById('csPopupBg')) closeCsPopup(); }
+
+// ── EDIT MODAL ──
+function openCaseEdit() {
+  editCases = JSON.parse(JSON.stringify(caseData));
+  renderCeList();
+  hideCeForm();
+  document.getElementById('caseEditBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCaseEdit() {
+  document.getElementById('caseEditBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeCaseEditOnBg(e) { if(e.target===document.getElementById('caseEditBg')) closeCaseEdit(); }
+
+function renderCeList() {
+  const el = document.getElementById('ce-list');
+  if (!editCases.length) {
+    el.innerHTML = `<div class="brand-empty-hint" style="margin-bottom:12px">No case studies yet. Add your first one below.</div>`;
+    return;
+  }
+  el.innerHTML = editCases.map((c,i)=>`
+    <div class="brand-chip" style="margin-bottom:6px">
+      <div class="bc-logo">
+            <span class="bc-init" style="display:none;font-size:10px;font-weight:700;color:var(--ink3)">${initials(c.brand)}</span>
+      </div>
+      <span class="bc-name">${c.brand}</span>
+      <span style="font-size:10px;color:var(--ink4);margin-right:4px">${c.type==='short'?'Short':'Long'} · ${c.videos.length} video${c.videos.length!==1?'s':''}</span>
+      <button class="bc-remove" onclick="removeCaseStudy('${c.id}')" title="Remove">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>`).join('');
+}
+
+function removeCaseStudy(id) {
+  editCases = editCases.filter(c=>c.id!==id);
+  renderCeList();
+}
+
+function openAddCase() {
+  ceEditingId = null;
+  ceCurrentBrand = null;
+  ceCurrentType = 'long';
+  ceVideoLinks = [{url:''}];
+  document.getElementById('ce-form-title').textContent = 'New case study';
+  document.getElementById('ce-brand-label-text').textContent = 'Choose a brand…';
+  document.getElementById('ce-brand-label-text').className = 'ce-no-brand';
+  document.getElementById('ce-brand-logo-preview').innerHTML = '<span class="ce-ini" id="ce-brand-ini">+</span>';
+  document.getElementById('ce-brand-change-lbl').style.display = 'none';
+  document.getElementById('ce-brand-pick').classList.remove('selected');
+  document.getElementById('ce-deliverables').value = '';
+  document.getElementById('ce-brand-search-wrap').style.display = 'none';
+  document.getElementById('ce-brand-search').value = '';
+  renderCeVideoRows();
+  document.getElementById('ce-form').style.display = '';
+  document.getElementById('ce-add-btn').style.display = 'none';
+  document.getElementById('ce-form').scrollIntoView({behavior:'smooth'});
+}
+
+function hideCeForm() {
+  document.getElementById('ce-form').style.display = 'none';
+  document.getElementById('ce-add-btn').style.display = '';
+  document.getElementById('ce-brand-search-wrap').style.display = 'none';
+}
+
+function cancelAddCase() { hideCeForm(); }
+
+function toggleCeBrandSearch() {
+  const wrap = document.getElementById('ce-brand-search-wrap');
+  const showing = wrap.style.display !== 'none';
+  wrap.style.display = showing ? 'none' : '';
+  if (!showing) { document.getElementById('ce-brand-search').focus(); searchCeBrand(''); }
+}
+
+function searchCeBrand(q) {
+  const matches = q.trim()
+    ? POPULAR_BRANDS.filter(b=>b.name.toLowerCase().includes(q.toLowerCase())||b.domain.includes(q.toLowerCase())).slice(0,8)
+    : POPULAR_BRANDS.slice(0,10);
+  document.getElementById('ce-brand-results').style.display = 'block';
+  document.getElementById('ce-brand-results').innerHTML = matches.map(b=>`
+    <div class="brand-result-row" onclick="selectCeBrand('${b.name}','${b.domain}')">
+      <div class="br-logo">${logoImg(b.domain,b.name)}</div>
+      <div class="br-info"><div class="br-name">${b.name}</div><div class="br-domain">${b.domain}</div></div>
+      <span class="br-add">Select</span>
+    </div>`).join('');
+}
+
+function selectCeBrand(name, domain) {
+  ceCurrentBrand = {name, domain};
+  const ceCol = brandColor(name);
+  document.getElementById('ce-brand-logo-preview').style.background = ceCol.bg;
+  document.getElementById('ce-brand-logo-preview').innerHTML =
+    '<span class="ce-ini" style="color:' + ceCol.fg + '">' + initials(name) + '</span>';
+  document.getElementById('ce-brand-label-text').textContent = name;
+  document.getElementById('ce-brand-label-text').className = 'ce-brand-label';
+  document.getElementById('ce-brand-change-lbl').style.display = '';
+  document.getElementById('ce-brand-pick').classList.add('selected');
+  document.getElementById('ce-brand-search-wrap').style.display = 'none';
+}
+
+// type is now auto-detected from URL — no manual toggle needed
+
+function renderCeVideoRows() {
+  document.getElementById('ce-video-rows').innerHTML = ceVideoLinks.map((v,i)=>`
+    <div class="fedit-link-row" style="margin-bottom:8px">
+      <div class="fedit-drag">≡</div>
+      <div class="fedit-fields" style="grid-template-columns:1fr">
+        <div class="fedit-field">
+          <div class="fedit-field-label">GJW video URL</div>
+          <input type="url" placeholder="https://ganjingworld.com/watch/…" value="${v.url||''}"
+            oninput="ceVideoLinks[${i}].url=this.value;validateGjwUrl(this)"/>
+        </div>
+      </div>
+      ${ceVideoLinks.length>1?`<button class="fedit-del" onclick="removeCeVideoRow(${i})"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`:'<div style="width:30px"></div>'}
+    </div>`).join('');
+}
+
+function addCeVideoRow() {
+  ceVideoLinks.push({url:''});
+  renderCeVideoRows();
+  const inputs = document.querySelectorAll('#ce-video-rows input[type="url"]');
+  inputs[inputs.length-1]?.focus();
+}
+
+function removeCeVideoRow(i) {
+  ceVideoLinks.splice(i,1);
+  renderCeVideoRows();
+}
+
+function validateGjwUrl(input) {
+  const v = input.value.trim();
+  if (!v) { input.style.borderColor=''; return; }
+  const ok = v.startsWith('https://ganjingworld.com/') || v.startsWith('http://ganjingworld.com/');
+  input.style.borderColor = ok ? '#18a058' : '#d93636';
+}
+
+
+// ── AUTO-DETECT VIDEO TYPE FROM GJW URL ──
+function detectVideoType(url) {
+  if (!url) return 'long';
+  const u = url.toLowerCase();
+  // GJW shorts URL patterns
+  if (u.includes('/shorts/') || u.includes('/short/') || u.includes('type=short') || u.includes('shorts?') ) return 'short';
+  // Fallback: default to long form
+  return 'long';
+}
+function saveCase() {
+  if (!ceCurrentBrand) { alert('Please choose a brand first.'); return; }
+  const validVideos = ceVideoLinks.filter(v=>v.url.trim() && v.url.includes('ganjingworld.com'));
+  if (!validVideos.length) { alert('Please add at least one valid GJW video URL.'); return; }
+
+  const deliverables = document.getElementById('ce-deliverables').value.trim();
+  const id = ceEditingId || 'cs' + Date.now();
+  // auto-detect type from first video URL
+  const autoType = detectVideoType(validVideos[0].url);
+  const entry = {id, brand:ceCurrentBrand.name, domain:ceCurrentBrand.domain, type:autoType, videos:validVideos.map(v=>({url:v.url.trim(),label:''})), deliverables};
+
+  if (ceEditingId) {
+    const idx = editCases.findIndex(c=>c.id===ceEditingId);
+    if (idx>=0) editCases[idx]=entry; else editCases.push(entry);
+  } else {
+    editCases.push(entry);
+  }
+
+  caseData = [...editCases];
+  renderCases();
+setTimeout(updateLongArrows,100);
+renderProducts();
+  renderCeList();
+  hideCeForm();
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeCsPopup();closeCaseEdit();closeFollowersEdit();closeProdEdit();closeLinksEdit();closeChannelEdit();}
+});
+
+// ─────────────────────────────────────────
+// ABOUT ME DATA
+// ─────────────────────────────────────────
+let aboutData = {
+  bio:     '',
+  country: '',
+  email:   '',
+  gjwUrl:  'ganjingworld.com/@yourchannel',
+  photo:   '',
+};
+
+const COUNTRIES = [
+  'Afghanistan','Albania','Algeria','Andorra','Angola','Antigua and Barbuda','Argentina','Armenia','Australia','Austria',
+  'Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan',
+  'Bolivia','Bosnia and Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burkina Faso','Burundi',
+  'Cabo Verde','Cambodia','Cameroon','Canada','Central African Republic','Chad','Chile','China','Colombia',
+  'Comoros','Congo','Costa Rica','Croatia','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica',
+  'Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Eritrea','Estonia','Eswatini',
+  'Ethiopia','Fiji','Finland','France','Gabon','Gambia','Georgia','Germany','Ghana','Greece','Grenada',
+  'Guatemala','Guinea','Guinea-Bissau','Guyana','Haiti','Honduras','Hungary','Iceland','India','Indonesia',
+  'Iran','Iraq','Ireland','Israel','Italy','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati',
+  'Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania',
+  'Luxembourg','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania',
+  'Mauritius','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montenegro','Morocco','Mozambique',
+  'Myanmar','Namibia','Nauru','Nepal','Netherlands','New Zealand','Nicaragua','Niger','Nigeria',
+  'North Korea','North Macedonia','Norway','Oman','Pakistan','Palau','Palestine','Panama','Papua New Guinea',
+  'Paraguay','Peru','Philippines','Poland','Portugal','Qatar','Romania','Russia','Rwanda','Saint Kitts and Nevis',
+  'Saint Lucia','Saint Vincent and the Grenadines','Samoa','San Marino','Sao Tome and Principe','Saudi Arabia',
+  'Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia',
+  'South Africa','South Korea','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Sweden','Switzerland',
+  'Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor-Leste','Togo','Tonga','Trinidad and Tobago',
+  'Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom',
+  'United States','Uruguay','Uzbekistan','Vanuatu','Vatican City','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe'
+];
+
+function populateCountrySelect() {
+  const sel = document.getElementById('about-country-input');
+  if (!sel || sel.options.length > 1) return;
+  COUNTRIES.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    sel.appendChild(opt);
+  });
+}
+
+function moreInfoIcon(type) {
+  if (type === 'gjw')   return `<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#1a73d4"/></svg>`;
+  if (type === 'email') return `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`;
+  return `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`;
+}
+
+function renderAbout() {
+  // Bio
+  const bioEl = document.getElementById('about-text-display');
+  if (bioEl) {
+    bioEl.innerHTML = aboutData.bio
+      .split('\n\n').filter(p=>p.trim())
+      .map(p=>'<p>' + p.trim() + '</p>').join('');
+  }
+  // profile photo
+  const photoWrap = document.getElementById('about-photo-wrap');
+  const photoImg  = document.getElementById('about-photo-img');
+  if (photoWrap && photoImg) {
+    if (aboutData.photo) {
+      photoImg.src = aboutData.photo;
+      photoWrap.style.display = '';
+    } else {
+      photoWrap.style.display = 'none';
+    }
+  }
+  // More info block
+  const miEl = document.getElementById('more-info-display');
+  if (!miEl) return;
+  const rows = [];
+  if (aboutData.country) {
+    rows.push(`<div class="more-info-row">
+      <div class="more-info-icon">${moreInfoIcon('country')}</div>
+      <span class="more-info-text">${aboutData.country}</span>
+    </div>`);
+  }
+  // GJW always shown
+  rows.push(`<div class="more-info-row">
+    <div class="more-info-icon">${moreInfoIcon('gjw')}</div>
+    <a href="https://${aboutData.gjwUrl}" target="_blank" class="more-info-link">${aboutData.gjwUrl}</a>
+  </div>`);
+  if (aboutData.email) {
+    rows.push(`<div class="more-info-row">
+      <div class="more-info-icon">${moreInfoIcon('email')}</div>
+      <a href="mailto:${aboutData.email}" class="more-info-link">${aboutData.email}</a>
+    </div>`);
+  }
+  miEl.innerHTML = rows.join('');
+}
+
+// ─── ABOUT EDIT MODAL ───
+function openAboutEdit() {
+  populateCountrySelect();
+  const ta = document.getElementById('about-bio-input');
+  ta.value = aboutData.bio;
+  updateCharCount(ta);
+  const sel = document.getElementById('about-country-input');
+  sel.value = aboutData.country || '';
+  document.getElementById('about-email-input').value = aboutData.email || '';
+  const photoUrl = aboutData.photo || '';
+  document.getElementById('about-photo-url').value = photoUrl;
+  previewAboutPhoto(photoUrl);
+  document.getElementById('aboutEditBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function handlePhotoUpload(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const dataUrl = e.target.result;
+    document.getElementById('about-photo-url').value = dataUrl;
+    previewAboutPhoto(dataUrl);
+  };
+  reader.readAsDataURL(file);
+}
+
+function previewAboutPhoto(url) {
+  const preview = document.getElementById('about-photo-preview');
+  if (!preview) return;
+  if (url && url.trim()) {
+    const img = document.createElement('img');
+    img.src = url.trim();
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover';
+    img.onerror = function() { preview.innerHTML = blankPhotoIcon(); };
+    preview.innerHTML = '';
+    preview.appendChild(img);
+  } else {
+    preview.innerHTML = blankPhotoIcon();
+  }
+}
+function blankPhotoIcon() {
+  return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink4)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>';
+}
+function closeAboutEdit() {
+  document.getElementById('aboutEditBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeAboutOnBg(e) { if(e.target===document.getElementById('aboutEditBg')) closeAboutEdit(); }
+
+function updateCharCount(el) {
+  const n = el.value.length;
+  const cc = document.getElementById('char-count');
+  if (cc) { cc.textContent = n+' / 1000'; cc.style.color = n>950?'#d93636':'var(--ink4)'; }
+}
+
+function saveAbout() {
+  aboutData.bio     = document.getElementById('about-bio-input').value.trim();
+  aboutData.country = document.getElementById('about-country-input').value;
+  aboutData.email   = document.getElementById('about-email-input').value.trim();
+  aboutData.photo   = (document.getElementById('about-photo-url').value || '').trim();
+  renderAbout();
+setTimeout(checkAboutOverflow, 100);
+  closeAboutEdit();
+}
+
+// ─────────────────────────────────────────
+// PRODUCTS
+// ─────────────────────────────────────────
+let productData = [];
+
+let editProducts = [];
+
+// ── PUBLIC RENDER ──
+function prodImgError(el) {
+  el.parentElement.innerHTML = '<div class="prod-img-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>';
+}
+function renderProducts() {
+  const grid = document.getElementById('prod-grid-display');
+  const empty = document.getElementById('prod-empty-state');
+  if (!grid) return;
+  grid.innerHTML = '';
+  if (empty) empty.style.display = !productData.length ? '' : 'none';
+  if (!productData.length) return;
+  productData.forEach(function(p) {
+    const a = document.createElement('a');
+    a.className = 'prod-card';
+    a.href = p.url;
+    a.target = '_blank';
+    // image
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'prod-img';
+    if (p.image) {
+      const img = document.createElement('img');
+      img.src = p.image; img.alt = '';
+      img.onerror = function(){ prodImgError(this); };
+      imgDiv.appendChild(img);
+    } else {
+      const ph = document.createElement('div');
+      ph.className = 'prod-img-placeholder';
+      imgDiv.appendChild(ph);
+    }
+    const badge = document.createElement('div');
+    badge.className = 'prod-store-badge';
+    const bImg = document.createElement('img');
+    bImg.src = 'https://img.logo.dev/' + p.storeDomain + '?token=pk_free&size=64';
+    bImg.onerror = function(){ this.remove(); };
+    badge.appendChild(bImg);
+    badge.appendChild(document.createTextNode(' ' + p.store));
+    imgDiv.appendChild(badge);
+    a.appendChild(imgDiv);
+    // info
+    const info = document.createElement('div');
+    info.className = 'prod-info';
+    const nm = document.createElement('div'); nm.className = 'prod-name'; nm.textContent = p.name;
+    info.appendChild(nm);
+    if (p.description) { const d = document.createElement('div'); d.className = 'prod-desc'; d.textContent = p.description; info.appendChild(d); }
+    if (p.price) { const pr = document.createElement('div'); pr.className = 'prod-price'; pr.textContent = p.price; info.appendChild(pr); }
+    a.appendChild(info);
+    // buy btn
+    const btn = document.createElement('div');
+    btn.className = 'prod-buy-btn';
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> ' + (p.ctaLabel || 'Shop Now');
+    btn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); window.open(p.url, '_blank'); });
+    a.appendChild(btn);
+    grid.appendChild(a);
+  });
+}
+
+// ── OG SCRAPER SIMULATION ──
+// In production: call your /api/og-scrape?url=... endpoint which returns {title, image, description, price}
+// The endpoint uses open-graph-scraper (Node) or a service like linkpreview.net
+const MOCK_OG_DB = {
+  'wisequest.com/products/quest-wise-soothing-eye-patches': {
+    name: 'Wise Quest Soothing Eye Patches',
+    description: 'Transdermal eye patches that relieve fatigue, dryness and eye strain. Natural herbal technology for digital eye strain relief.',
+    price: '$34.99',
+    image: 'https://wisequest.com/cdn/shop/files/Wise_Quest_Soothing_Eye_Patches.png?v=1762529962&width=600',
+    store: 'Shopify',
+    storeDomain: 'wisequest.com',
+  },
+  'gumroad.com': {
+    name: 'Digital Product on Gumroad',
+    description: 'A digital download or course available on Gumroad.',
+    price: '$29.00',
+    image: '',
+    store: 'Gumroad',
+    storeDomain: 'gumroad.com',
+  },
+};
+
+let pendingProduct = null;
+
+function fetchProductPreview() {
+  const rawUrl = document.getElementById('prod-url-input').value.trim();
+  if (!rawUrl) return;
+
+  const btn = document.getElementById('prod-fetch-btn');
+  const preview = document.getElementById('prod-preview-card');
+  const errEl  = document.getElementById('prod-fetch-error');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinning">↻</span> Fetching…';
+  preview.style.display = 'none';
+  errEl.style.display = 'none';
+
+  // Simulate a 1.4s network request
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = 'Fetch preview';
+
+    // Match URL against mock DB
+    let matched = null;
+    for (const key of Object.keys(MOCK_OG_DB)) {
+      if (rawUrl.includes(key)) { matched = MOCK_OG_DB[key]; break; }
+    }
+
+    if (!matched) {
+      // Generic fallback using domain
+      try {
+        const domain = new URL(rawUrl).hostname.replace('www.','');
+        matched = {
+          name: document.getElementById('prod-url-input').value.split('/').filter(Boolean).pop()?.replace(/[-_]/g,' ') || 'Product',
+          description: '',
+          price: '',
+          image: '',
+          store: domain,
+          storeDomain: domain,
+        };
+      } catch(e) {
+        errEl.textContent = 'Could not parse that URL. Please check it and try again.';
+        errEl.style.display = 'block';
+        return;
+      }
+    }
+
+    pendingProduct = {
+      id: 'p' + Date.now(),
+      url: rawUrl,
+      ...matched,
+    };
+
+    const faviconUrl = 'https://loadlogo.com/logo/' + matched.storeDomain;
+    // CTA label from modal select (added below)
+    const ctaSel = document.getElementById('prod-cta-select');
+    const ctaLabel = ctaSel ? ctaSel.value : 'Shop Now';
+    pendingProduct = Object.assign({}, pendingProduct || {});
+    pendingProduct.ctaLabel = ctaLabel;
+    preview.style.display = 'block';
+    preview.innerHTML = `
+      <div class="prod-preview-wrap">
+        <div class="prod-preview-img">
+          <div class="prod-preview-img-inner"></div>
+        </div>
+        <div class="prod-preview-info">
+          <div class="prod-preview-name">${matched.name}</div>
+          ${matched.price ? `<div class="prod-preview-price">${matched.price}</div>` : ''}
+          <div class="prod-preview-source" style="display:flex;align-items:center;gap:4px">
+
+            ${matched.storeDomain}
+          </div>
+        </div>
+      </div>
+      <button class="prod-preview-add" onclick="addProductFromPreview()">
+        + Add to products
+      </button>`;
+  }, 1400);
+}
+
+function clearProdPreview() {
+  document.getElementById('prod-preview-card').style.display = 'none';
+  document.getElementById('prod-fetch-error').style.display = 'none';
+  pendingProduct = null;
+}
+
+function addProductFromPreview() {
+  if (!pendingProduct) return;
+  if (editProducts.some(p=>p.url===pendingProduct.url)) {
+    document.getElementById('prod-fetch-error').textContent = 'This product is already added.';
+    document.getElementById('prod-fetch-error').style.display = 'block';
+    return;
+  }
+  editProducts.push({...pendingProduct});
+  productData = [...editProducts];
+  renderProducts();
+  renderProdAddedList();
+  document.getElementById('prod-preview-card').style.display = 'none';
+  document.getElementById('prod-url-input').value = '';
+  pendingProduct = null;
+}
+
+function removeProduct(id) {
+  editProducts = editProducts.filter(p=>p.id!==id);
+  productData = [...editProducts];
+  renderProducts();
+  renderProdAddedList();
+}
+
+function renderProdAddedList() {
+  const el = document.getElementById('prod-added-list');
+  if (!el) return;
+  if (!editProducts.length) {
+    el.innerHTML = '<div class="brand-empty-hint">No products added yet.</div>';
+    return;
+  }
+  el.innerHTML = editProducts.map(p=>`
+    <div class="prod-chip">
+      <div class="prod-chip-img">
+        ${p.image ? `<img src="${p.image}" alt="${p.name}"/>` : `<div style="width:100%;height:100%;background:#e8e8e8"></div>`}
+      </div>
+      <div class="prod-chip-info">
+        <div class="prod-chip-name">${p.name}</div>
+        <div class="prod-chip-price">${p.price||p.store}</div>
+      </div>
+      <button class="bc-remove" onclick="removeProduct('${p.id}')" title="Remove">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>`).join('');
+}
+
+function openProdEdit() {
+  editProducts = JSON.parse(JSON.stringify(productData));
+  clearProdPreview();
+  document.getElementById('prod-url-input').value = '';
+  renderProdAddedList();
+  document.getElementById('prodEditBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeProdEdit() {
+  document.getElementById('prodEditBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeProdEditOnBg(e){ if(e.target===document.getElementById('prodEditBg')) closeProdEdit(); }
+
+
+// ─────────────────────────────────────────
+// LONG FORM CAROUSEL SCROLL
+// ─────────────────────────────────────────
+function scrollAllGrid(dir) { scrollLongGrid(dir); }
+function scrollLongGrid(dir) {
+  const grid = document.getElementById('cs-long-grid');
+  if (!grid) return;
+  const card = grid.querySelector('.cs-card');
+  const step = card ? card.offsetWidth + 16 : 300;
+  grid.scrollBy({ left: dir * step, behavior: 'smooth' });
+  setTimeout(updateLongArrows, 320);
+}
+function scrollShortGrid(dir) {
+  const grid = document.getElementById('cs-short-grid');
+  if (!grid) return;
+  const card = grid.querySelector('.cs-card');
+  const step = card ? card.offsetWidth + 14 : 180;
+  grid.scrollBy({ left: dir * step, behavior: 'smooth' });
+  setTimeout(updateShortArrows, 320);
+}
+function updateLongArrows() {
+  const grid = document.getElementById('cs-long-grid');
+  const prev = document.getElementById('cs-long-prev');
+  const next = document.getElementById('cs-long-next');
+  if (!grid || !prev || !next) return;
+  const atEnd = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 10;
+  prev.classList.toggle('hidden', grid.scrollLeft < 10);
+  next.classList.toggle('hidden', atEnd);
+}
+
+function updateShortArrows() {
+  const grid = document.getElementById('cs-short-grid');
+  const prev = document.getElementById('cs-short-prev');
+  const next = document.getElementById('cs-short-next');
+  if (!grid || !prev || !next) return;
+  const atEnd = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 10;
+  prev.classList.toggle('hidden', grid.scrollLeft < 10);
+  next.classList.toggle('hidden', atEnd);
+}
+
+
+// attach scroll listeners to cs grids for arrow + fade updates
+document.addEventListener('DOMContentLoaded', function() {
+  var lg = document.getElementById('cs-long-grid');
+  var sg = document.getElementById('cs-short-grid');
+  if (lg) lg.addEventListener('scroll', updateLongArrows);
+  if (sg) sg.addEventListener('scroll', updateShortArrows);
+});
+
+function scrollProdGrid(dir) {
+  const grid = document.getElementById('prod-grid-display');
+  if (!grid) return;
+  const card = grid.querySelector('.prod-card');
+  const step = card ? card.offsetWidth + 16 : 300;
+  grid.scrollBy({ left: dir * step, behavior: 'smooth' });
+  setTimeout(function(){
+    const prev = document.getElementById('prod-prev');
+    const next = document.getElementById('prod-next');
+    if (!prev || !next) return;
+    prev.classList.toggle('hidden', grid.scrollLeft < 10);
+    next.classList.toggle('hidden', grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 10);
+  }, 320);
+}
+
+// ── ABOUT ME SHOW MORE ──
+function checkAboutOverflow() {
+  // Always show the button — bio is always longer than the collapsed height
+  const btn = document.getElementById('about-show-more-btn');
+  if (btn) btn.style.display = 'block';
+}
+
+function toggleAboutExpand() {
+  const clamp = document.getElementById('about-text-clamp');
+  const btn   = document.getElementById('about-show-more-btn');
+  if (!clamp || !btn) return;
+  const expanded = clamp.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less ↑' : 'Show more ↓';
+}
+
+// ─────────────────────────────────────────
+// EXPORT PAGE
+// ─────────────────────────────────────────
+function exportPage() {
+  // 1. Get the current HTML
+  var html = document.documentElement.outerHTML;
+
+  // 2. Inject current live data by replacing the data declarations
+  //    We serialise each data object and replace the let ... = ... ; blocks
+
+  function replaceVar(src, varName, newVal) {
+    var marker = 'let ' + varName + ' = ';
+    var start = src.indexOf(marker);
+    if (start < 0) return src;
+    // find the matching semicolon at the end of the block
+    var depth = 0; var i = start + marker.length;
+    while (i < src.length) {
+      var ch = src[i];
+      if (ch === '{' || ch === '[') depth++;
+      else if (ch === '}' || ch === ']') depth--;
+      else if (ch === ';' && depth === 0) break;
+      i++;
+    }
+    return src.slice(0, start) + marker + JSON.stringify(newVal, null, 2) + src.slice(i);
+  }
+
+  html = replaceVar(html, 'channelData', channelData);
+  html = replaceVar(html, 'socialData',  socialData);
+  html = replaceVar(html, 'aboutData',   aboutData);
+  html = replaceVar(html, 'brandData',   brandData);
+  html = replaceVar(html, 'caseData',    caseData);
+  html = replaceVar(html, 'productData', productData);
+  html = replaceVar(html, 'linksData',   linksData);
+
+  // 3. Patch channel header — name, meta, desc, avatar
+  var channelName = aboutData.gjwUrl
+    ? aboutData.gjwUrl.replace('ganjingworld.com/@','').replace(/^[a-z]/, function(ch){ return ch.toUpperCase(); })
+    : 'Your Name';
+
+  html = html.replace(
+    /<span class="channel-name">[^<]*<\/span>/,
+    '<span class="channel-name">' + channelName + '</span>'
+  );
+
+  // 4. Inject profile photo into avatar if set
+  if (aboutData.photo) {
+    var avatarImg = '<img src="' + aboutData.photo + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%"/>';
+    html = html.replace(
+      /<div class="avatar-placeholder"[^>]*>[^<]*<\/div>/,
+      avatarImg + '<div class="avatar-placeholder" style="display:none">?</div>'
+    );
+  }
+
+  // 5. Remove the export FAB and overlay — handled via string search below
+  // 6. Remove IS_OWNER — exported file is the public-facing version
+  // Keep IS_OWNER as false so edit pens are hidden
+  html = html.replace(
+    "document.body.classList.add('is-owner');",
+    "// IS_OWNER disabled in exported file"
+  );
+
+  // 7. Download
+  var slug = (aboutData.gjwUrl || 'gjw-creator').replace('ganjingworld.com/@','').replace(/[^a-z0-9]/gi,'-').toLowerCase();
+  var filename = 'gjw-' + slug + '-mediakit.html';
+  var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  // 8. Show success overlay
+  document.getElementById('exportOverlay').classList.add('open');
+}
+// ─────────────────────────────────────────
+// CHANNEL DATA
+// ─────────────────────────────────────────
+let channelData = {
+  name:       'Your Name',
+  handle:     '@yourchannel',
+  bannerUrl:  '',
+  avatarUrl:  '',
+};
+
+function renderChannel() {
+  // name
+  document.querySelectorAll('.channel-name').forEach(function(el){
+    el.textContent = channelData.name || 'Your Name';
+  });
+  // banner
+  var cover = document.querySelector('.channel-cover');
+  if (cover) {
+    if (channelData.bannerUrl) {
+      var existing = cover.querySelector('img');
+      if (!existing) {
+        existing = document.createElement('img');
+        existing.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block';
+        cover.appendChild(existing);
+      }
+      existing.src = channelData.bannerUrl;
+    } else {
+      var img = cover.querySelector('img');
+      if (img) img.remove();
+    }
+  }
+  // avatar
+  var avatarWrap = document.querySelector('.channel-avatar');
+  if (avatarWrap) {
+    var ph = avatarWrap.querySelector('.avatar-placeholder');
+    var av = avatarWrap.querySelector('.channel-avatar-img');
+    if (channelData.avatarUrl) {
+      if (!av) {
+        av = document.createElement('img');
+        av.className = 'channel-avatar-img';
+        av.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;inset:0';
+        av.onerror = function(){ this.remove(); if(ph) ph.style.display='flex'; };
+        avatarWrap.insertBefore(av, avatarWrap.firstChild);
+      }
+      av.src = channelData.avatarUrl;
+      if (ph) ph.style.display = 'none';
+    } else {
+      if (av) av.remove();
+      if (ph) ph.style.display = 'flex';
+    }
+  }
+  // also sync gjwUrl in aboutData
+  if (channelData.handle) {
+    aboutData.gjwUrl = 'ganjingworld.com/' + channelData.handle;
+  }
+}
+
+function openChannelEdit() {
+  document.getElementById('ch-name-input').value   = channelData.name || '';
+  document.getElementById('ch-handle-input').value = channelData.handle || '';
+  document.getElementById('ch-banner-input').value = channelData.bannerUrl || '';
+  document.getElementById('ch-avatar-input').value = channelData.avatarUrl || '';
+  previewChannelBanner(channelData.bannerUrl || '');
+  previewChannelAvatar(channelData.avatarUrl || '');
+  document.getElementById('channelEditBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeChannelEdit() {
+  document.getElementById('channelEditBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeChannelEditOnBg(e){ if(e.target===document.getElementById('channelEditBg')) closeChannelEdit(); }
+
+function previewChannelBanner(url) {
+  var prev = document.getElementById('ch-banner-preview');
+  if (!prev) return;
+  prev.style.background = url ? 'url(' + url + ') center/cover no-repeat #222' : '#222';
+}
+function previewChannelAvatar(url) {
+  var prev = document.getElementById('ch-avatar-preview');
+  if (!prev) return;
+  prev.style.background = '#555';
+  prev.style.backgroundImage = url ? 'url(' + url + ')' : 'none';
+  prev.style.backgroundSize = 'cover';
+  prev.style.backgroundPosition = 'center';
+  prev.textContent = url ? '' : '?';
+}
+function saveChannel() {
+  channelData.name      = document.getElementById('ch-name-input').value.trim() || 'Your Name';
+  channelData.handle    = document.getElementById('ch-handle-input').value.trim();
+  channelData.bannerUrl = document.getElementById('ch-banner-input').value.trim();
+  channelData.avatarUrl = document.getElementById('ch-avatar-input').value.trim();
+  renderChannel();
+  closeChannelEdit();
+}
+
+// INIT
+renderFollowers();
+renderAbout();
+renderBrands();
+renderCases();
+setTimeout(function(){ updateLongArrows(); updateShortArrows(); }, 200);
+renderProducts();
+renderLinks();
+</script>
+
+<!-- EXPORT SUCCESS OVERLAY -->
+<div class="export-overlay" id="exportOverlay">
+  <div class="export-card">
+    <div class="export-card-icon">✅</div>
+    <h3>Page exported!</h3>
+    <p>Your finished media kit has been downloaded as an HTML file. Open it in any browser, or push it to GitHub to deploy on Vercel.</p>
+    <button class="export-card-btn" onclick="document.getElementById('exportOverlay').classList.remove('open')">Done</button>
+  </div>
+</div>
+
+<!-- EXPORT FLOATING BUTTON (owner only) -->
+<div class="export-fab is-owner-show">
+  <button class="export-fab-btn" onclick="exportPage()" title="Download finished page">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Export page
+  </button>
+</div>
+
+</body>
