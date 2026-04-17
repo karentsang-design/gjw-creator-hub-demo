@@ -1997,17 +1997,11 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
 }
 function calcTotal(platforms) {
-  let t = 0;
-  platforms.filter(p=>p.enabled).forEach(p => {
-    const s = p.count || '';
-    let n = parseFloat(s);
-    if (s.match(/m/i)) n *= 1e6;
-    else if (s.match(/k/i)) n *= 1e3;
-    if (!isNaN(n)) t += n;
+  var t = 0;
+  platforms.filter(function(p){ return p.enabled; }).forEach(function(p) {
+    t += parseCount(p.count);
   });
-  if (t >= 1e6) return (t/1e6).toFixed(1).replace('.0','') + 'M';
-  if (t >= 1e3) return (t/1e3).toFixed(1).replace('.0','') + 'K';
-  return Math.round(t).toString();
+  return formatCount(t) || '0';
 }
 function latestDate(platforms) {
   const dates = platforms.filter(p=>p.enabled&&p.updatedAt).map(p=>p.updatedAt).sort().reverse();
@@ -2111,6 +2105,42 @@ function platformIcon(title) {
   return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="1.8" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>';
 }
 
+
+// ── FOLLOWER COUNT FORMATTING ──
+function parseCount(raw) {
+  // parse any input into a raw number
+  if (!raw) return 0;
+  var s = String(raw).trim().replace(/,/g,'');
+  var n = parseFloat(s);
+  if (s.match(/b/i)) n *= 1e9;
+  else if (s.match(/m/i)) n *= 1e6;
+  else if (s.match(/k/i)) n *= 1e3;
+  return isNaN(n) ? 0 : Math.round(n);
+}
+
+function formatCount(n) {
+  if (!n || n === 0) return '';
+  if (n >= 1e9) return (n / 1e9).toFixed(n % 1e9 === 0 ? 0 : 1).replace(/\.0$/, '') + 'B';
+  if (n >= 1e6) return (n / 1e6).toFixed(n % 1e6 === 0 ? 0 : 1).replace(/\.0$/, '') + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(n % 1e3 === 0 ? 0 : 1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
+
+function onCountInput(el, idx, isGjw) {
+  // allow raw typing — only format on blur
+  if (isGjw) { window.gjwCountEdit = el.value; }
+  else { editLinks[idx].count = el.value; editLinks[idx].updatedAt = new Date().toISOString().slice(0,10); }
+}
+
+function onCountBlur(el, idx, isGjw) {
+  var raw = el.value.trim();
+  if (!raw) return;
+  var n = parseCount(raw);
+  var formatted = formatCount(n);
+  el.value = formatted;
+  if (isGjw) { window.gjwCountEdit = formatted; }
+  else { editLinks[idx].count = formatted; }
+}
 function updatePlatformIcon(el) {
   var row = el.parentElement;
   while (row && !row.classList.contains('fedit-link-row')) row = row.parentElement;
@@ -2133,8 +2163,8 @@ function makeFollowerRow(title, url, count, isGjw, idx) {
     ? 'gjwUrlEdit=this.value'
     : 'editLinks[' + idx + '].url=this.value';
   var cntOninput = isGjw
-    ? 'gjwCountEdit=this.value'
-    : 'editLinks[' + idx + '].count=this.value;editLinks[' + idx + '].updatedAt=new Date().toISOString().slice(0,10)';
+    ? 'onCountInput(this,-1,true)'
+    : 'onCountInput(this,' + idx + ',false)';
 
   return '<div class="fedit-link-row"' + idxAttr + '>' +
     '<div class="fedit-drag">⋮⋮</div>' +
@@ -2152,7 +2182,7 @@ function makeFollowerRow(title, url, count, isGjw, idx) {
       '</div>' +
       '<div class="fedit-field fedit-field-count">' +
         '<div class="fedit-field-label">Followers</div>' +
-        '<input placeholder="e.g. 1.2M" value="' + (count||'') + '" oninput="' + cntOninput + '"/>' +
+        '<input placeholder="e.g. 804K" value="' + (count||'') + '" inputmode="decimal" oninput="' + cntOninput + '" onblur="onCountBlur(this,' + (isGjw ? '-1,true' : idx + ',false') + ')"/>' +
       '</div>' +
     '</div>' +
     delBtn +
@@ -2207,7 +2237,7 @@ function saveFollowers() {
   const gjwPlatform = socialData.platforms.find(p=>p.id==='gjw');
   if (gjwPlatform) {
     gjwPlatform.link  = window.gjwUrlEdit   || gjwPlatform.link;
-    gjwPlatform.count     = window.gjwCountEdit;
+    gjwPlatform.count     = formatCount(parseCount(window.gjwCountEdit)) || window.gjwCountEdit;
     if (window.gjwCountEdit) gjwPlatform.updatedAt = new Date().toISOString().slice(0,10);
   }
   // also update channelData handle from URL
@@ -2232,7 +2262,7 @@ function saveFollowers() {
       return {
         id: matchId,
         handle: existing?.handle || '',
-        count: lk.count || existing?.count || '',
+        count: formatCount(parseCount(lk.count)) || lk.count || existing?.count || '',
         link: lk.url.trim(),
         title: lk.title.trim(),
         enabled: true,
