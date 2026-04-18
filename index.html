@@ -1636,7 +1636,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smo
       <!-- Search box -->
       <div class="brand-search-wrap">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="brand-search-input" class="brand-search-input" placeholder="Search brands (e.g. Nike, Apple, Notion…)" oninput="searchBrands(this.value)" autocomplete="off"/>
+        <input id="brand-search-input" class="brand-search-input" placeholder="Search brands (e.g. Nike, Apple, Notion…)" oninput="searchBrands(this.value)" onkeydown="if(event.key==='Enter'){addCustomBrandFromSearch()||searchBrands(this.value)}" autocomplete="off"/>
         <button class="brand-search-clear" id="brand-search-clear" onclick="clearBrandSearch()" style="display:none">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
@@ -2704,12 +2704,23 @@ function searchBrands(q) {
   results.style.display = 'block';
 
   if (!matches.length) {
-    // Allow adding custom brand by domain
-    const guessedDomain = q.toLowerCase().includes('.') ? q.toLowerCase() : q.toLowerCase().replace(/\s+/g,'')+'.com';
-    results.innerHTML = `<div class="brand-search-empty">
-      <strong>No results for "${q}"</strong>
-      <span>Try the website domain, or <a href="#" style="color:#1a73d4" onclick="addCustomBrand('${q}','${guessedDomain}');return false">add "${q}" manually</a></span>
-    </div>`;
+    const guessedDomain = q.toLowerCase().includes('.') ? q.toLowerCase() : q.toLowerCase().replace(/\s+/g,'') + '.com';
+    const col = brandColor(q);
+    results.innerHTML = '<div class="brand-search-empty" style="padding:10px 0">' +
+      '<strong style="display:block;margin-bottom:6px">No results for "' + q + '"</strong>' +
+      '<div class="brand-result-row" id="custom-brand-add-row" style="cursor:pointer" onclick="addCustomBrandFromSearch()">' +
+        '<div class="br-logo" style="background:' + col.bg + ';border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center">' +
+          '<span style="font-size:10px;font-weight:700;color:' + col.fg + '">' + initials(q) + '</span>' +
+        '</div>' +
+        '<div class="br-info">' +
+          '<div class="br-name">Add "' + q + '" as custom brand</div>' +
+          '<div class="br-domain">' + guessedDomain + '</div>' +
+        '</div>' +
+        '<span class="br-add">+ Add</span>' +
+      '</div>' +
+    '</div>';
+    // store pending custom brand
+    window._pendingCustomBrand = { name: q, domain: guessedDomain };
     return;
   }
 
@@ -2743,8 +2754,16 @@ function addBrand(name, domain) {
   searchBrands(document.getElementById('brand-search-input').value);
 }
 
+function addCustomBrandFromSearch() {
+  if (window._pendingCustomBrand) {
+    addCustomBrand(window._pendingCustomBrand.name, window._pendingCustomBrand.domain);
+    window._pendingCustomBrand = null;
+  }
+}
+
 function addCustomBrand(name, domain) {
-  addBrand(name.trim(), domain.trim());
+  if (!name || !name.trim()) return;
+  addBrand(name.trim(), domain ? domain.trim() : name.trim().toLowerCase().replace(/\s+/g,'') + '.com');
   clearBrandSearch();
 }
 
