@@ -2238,9 +2238,15 @@ function saveFollowers() {
   // save GJW row
   const gjwPlatform = socialData.platforms.find(p=>p.id==='gjw');
   if (gjwPlatform) {
-    gjwPlatform.link  = window.gjwUrlEdit   || gjwPlatform.link;
-    gjwPlatform.count     = formatCount(parseCount(window.gjwCountEdit)) || window.gjwCountEdit;
-    if (window.gjwCountEdit) gjwPlatform.updatedAt = new Date().toISOString().slice(0,10);
+    // read directly from DOM inputs in case window vars not updated
+    var gjwRows = document.querySelectorAll('#fedit-link-rows .fedit-link-row');
+    var gjwInputs = gjwRows.length ? gjwRows[0].querySelectorAll('input') : [];
+    var domUrl   = gjwInputs[1] ? gjwInputs[1].value.trim() : '';
+    var domCount = gjwInputs[2] ? gjwInputs[2].value.trim() : '';
+    gjwPlatform.link  = domUrl   || window.gjwUrlEdit   || gjwPlatform.link;
+    var rawCount = domCount || window.gjwCountEdit || '';
+    gjwPlatform.count = formatCount(parseCount(rawCount)) || rawCount;
+    if (rawCount) gjwPlatform.updatedAt = new Date().toISOString().slice(0,10);
   }
   // also update channelData handle from URL
   if (window.gjwUrlEdit) {
@@ -3058,18 +3064,80 @@ function selectCeBrand(name, domain) {
 // type is now auto-detected from URL — no manual toggle needed
 
 function renderCeVideoRows() {
-  document.getElementById('ce-video-rows').innerHTML = ceVideoLinks.map((v,i)=>`
-    <div class="fedit-link-row" style="margin-bottom:8px">
-      <div class="fedit-drag">≡</div>
-      <div class="fedit-fields" style="grid-template-columns:1fr">
-        <div class="fedit-field">
-          <div class="fedit-field-label">GJW video URL</div>
-          <input type="url" placeholder="https://ganjingworld.com/watch/…" value="${v.url||''}"
-            oninput="ceVideoLinks[${i}].url=this.value;validateGjwUrl(this)"/>
-        </div>
-      </div>
-      ${ceVideoLinks.length>1?`<button class="fedit-del" onclick="removeCeVideoRow(${i})"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`:'<div style="width:30px"></div>'}
-    </div>`).join('');
+  document.getElementById('ce-video-rows').innerHTML = ceVideoLinks.map(function(v,i) {
+    var del = ceVideoLinks.length > 1
+      ? '<button class="fedit-del" onclick="removeCeVideoRow(' + i + ')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>'
+      : '<div style="width:30px"></div>';
+    var thumbPreview = v.thumb
+      ? '<div style="width:60px;height:34px;border-radius:5px;overflow:hidden;flex-shrink:0;background:#111"><img src="' + v.thumb + '" style="width:100%;height:100%;object-fit:cover"/></div>'
+      : '<div style="width:60px;height:34px;border-radius:5px;background:var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center" id="thumb-prev-' + i + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>';
+    var statusIcon = v.fetching
+      ? '<span style="font-size:11px;color:var(--ink3);margin-left:6px">fetching…</span>'
+      : (v.thumb ? '<span style="font-size:11px;color:#18a058;margin-left:6px">✓ thumbnail loaded</span>'
+                 : '<span style="font-size:11px;color:var(--ink4);margin-left:6px">paste URL to auto-load thumbnail</span>');
+    return '<div class="fedit-link-row" style="margin-bottom:10px;align-items:center" id="ce-video-row-' + i + '">' +
+      '<div class="fedit-drag">≡</div>' +
+      thumbPreview +
+      '<div class="fedit-fields" style="grid-template-columns:1fr;flex:1">' +
+        '<div class="fedit-field">' +
+          '<div class="fedit-field-label" style="display:flex;align-items:center">' +
+            'Sponsored video URL' + statusIcon +
+          '</div>' +
+          '<input type="url" placeholder="https://ganjingworld.com/video/… or /shorts/…" value="' + (v.url||'') + '"' +
+            ' oninput="ceVideoLinks[' + i + '].url=this.value;validateGjwUrl(this)"' +
+            ' onblur="fetchVideoThumb(' + i + ', this.value)"/>' +
+        '</div>' +
+      '</div>' +
+      del +
+    '</div>';
+  }).join('');
+}
+
+// Auto-fetch thumbnail from GJW page client-side
+function fetchVideoThumb(idx, url) {
+  url = (url || '').trim();
+  if (!url || !url.includes('ganjingworld.com')) return;
+  if (ceVideoLinks[idx] && ceVideoLinks[idx].thumb) return; // already have it
+
+  ceVideoLinks[idx].fetching = true;
+  renderCeVideoRows();
+
+  // Use a CORS proxy or direct fetch — GJW pages allow cross-origin reads
+  // Try direct fetch first (works if GJW sends CORS headers)
+  fetch(url, { mode: 'cors', cache: 'no-cache' })
+    .then(function(r) { return r.text(); })
+    .then(function(html) {
+      // Parse og:image from the HTML
+      var match = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/)
+                || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/)
+                || html.match(/cloudokyo\.cloud\/image\/[^\s"'<]+/);
+      var thumb = match ? (match[1] || 'https://' + match[0]) : '';
+      // normalise size to 640
+      if (thumb) thumb = thumb.replace(/\/\d+\.webp$/, '/640.webp').replace(/\/\d+\.jpg$/, '/640.webp');
+      ceVideoLinks[idx].thumb = thumb || '';
+      ceVideoLinks[idx].fetching = false;
+      renderCeVideoRows();
+    })
+    .catch(function() {
+      // Direct fetch blocked — try allorigins proxy as fallback
+      fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(url))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var html = data.contents || '';
+          var match = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/)
+                    || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/)
+                    || html.match(/cloudokyo\.cloud\/image\/[^\s"'<]+/);
+          var thumb = match ? (match[1] || 'https://' + match[0]) : '';
+          if (thumb) thumb = thumb.replace(/\/\d+\.webp$/, '/640.webp');
+          ceVideoLinks[idx].thumb = thumb || '';
+          ceVideoLinks[idx].fetching = false;
+          renderCeVideoRows();
+        })
+        .catch(function() {
+          ceVideoLinks[idx].fetching = false;
+          renderCeVideoRows();
+        });
+    });
 }
 
 function addCeVideoRow() {
@@ -3110,7 +3178,7 @@ function saveCase() {
   const id = ceEditingId || 'cs' + Date.now();
   // auto-detect type from first video URL
   const autoType = detectVideoType(validVideos[0].url);
-  const entry = {id, brand:ceCurrentBrand.name, domain:ceCurrentBrand.domain, type:autoType, videos:validVideos.map(v=>({url:v.url.trim(),label:''})), deliverables};
+  const entry = {id, brand:ceCurrentBrand.name, domain:ceCurrentBrand.domain, type:autoType, thumb: validVideos[0].thumb||'', videos:validVideos.map(v=>({url:v.url.trim(),thumb:v.thumb||'',label:''})), deliverables};
 
   if (ceEditingId) {
     const idx = editCases.findIndex(c=>c.id===ceEditingId);
