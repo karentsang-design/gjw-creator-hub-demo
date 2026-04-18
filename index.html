@@ -1149,7 +1149,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smo
 /* collapsible text area */
 .about-text-clamp{
   position:relative;
-  max-height:120px;
+  max-height:168px;
   overflow:hidden;
   transition:max-height .4s ease;
 }
@@ -1179,7 +1179,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smo
   .about-body-row{flex-direction:column;gap:18px}
   .about-photo-wrap{width:100%}
   .about-photo{width:100%;height:280px;border-radius:14px}
-  .about-text-clamp{max-height:120px}
+  .about-text-clamp{max-height:168px}
 }
 
 
@@ -1541,7 +1541,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smo
 </div><!-- /about-content -->
 
 <!-- CHANNEL EDIT MODAL -->
-<div class="fedit-bg" id="channelEditBg" onclick="closeChannelEditOnBg(event)">
+<div class="fedit-bg" id="channelEditBg">
   <div class="fedit-modal" style="max-width:500px">
     <div class="fedit-head">
       <span class="fedit-title">Channel info</span>
@@ -1718,16 +1718,15 @@ body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smo
 
         <div class="mi-fixed-rows">
 
-          <!-- GJW Channel — locked, auto-populated -->
+          <!-- GJW Channel — editable, syncs from followers section -->
           <div class="mi-fixed-row">
             <div class="mi-fixed-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#1a73d4"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#111"/><text x="12" y="15.5" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="7" fill="white" letter-spacing="0.5">GJW</text></svg>
             </div>
             <div class="mi-fixed-label">GJW Channel</div>
-            <div class="mi-fixed-value" id="about-gjw-display">ganjingworld.com/@yourchannel</div>
-            <span class="gjw-lock">Auto</span>
+            <input id="about-gjw-input" class="mi-fixed-input" type="url"
+              placeholder="https://ganjingworld.com/@yourchannel" style="flex:1;font-size:13px"/>
           </div>
-
           <!-- Email -->
           <div class="mi-fixed-row">
             <div class="mi-fixed-icon">
@@ -2050,18 +2049,16 @@ function renderFollowers() {
     emptyEl.style.display = '';
   }
   const showCount = socialData.displayMode === 'count';
-  document.getElementById('platform-followers-display').innerHTML = enabled.filter(function(p){ return p.id !== 'gjw'; }).map(p => {
-    const def = PLATFORM_DEFS[p.id] || {};
-    const icon = def.icon || `<span style="font-size:11px;font-weight:700;color:#fff;background:#555;border-radius:4px;padding:2px 5px">${(p.title||p.id||'').slice(0,2).toUpperCase()}</span>`;
-    const label = p.title || def.label || p.id;
-    const dateStr = p.updatedAt ? new Date(p.updatedAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
-    return `<a class="pf-item" href="${p.link||'#'}" target="_blank" title="${label}">
-      <div class="pf-icon">${icon}</div>
-      <div class="pf-count-wrap">
-        ${showCount && p.count ? `<span class="pf-count">${p.count}</span>` : ''}
-        ${showCount && p.count && dateStr ? `<span class="pf-date">${dateStr}</span>` : ''}
-      </div>
-    </a>`;
+  var allDates = enabled.filter(function(p){ return p.updatedAt; }).map(function(p){ return p.updatedAt; }).sort().reverse();
+  var globalDate = allDates[0] ? new Date(allDates[0]).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+  if (updEl && hasAnyCount) updEl.textContent = globalDate ? 'Updated ' + globalDate : '';
+  document.getElementById('platform-followers-display').innerHTML = enabled.map(function(p) {
+    var def = PLATFORM_DEFS[p.id] || {};
+    var icon = def.icon || ('<span style="font-size:9px;font-weight:800;color:#fff;background:#555;border-radius:4px;padding:2px 5px">' + (p.title||p.id||'').slice(0,3).toUpperCase() + '</span>');
+    return '<a class="pf-item" href="' + (p.link||'#') + '" target="_blank">' +
+      '<div class="pf-icon">' + icon + '</div>' +
+      (showCount && p.count ? '<span class="pf-count">' + p.count + '</span>' : '') +
+    '</a>';
   }).join('');
 }
 
@@ -3296,6 +3293,9 @@ function saveAbout() {
   aboutData.country = document.getElementById('about-country-input').value;
   aboutData.email   = document.getElementById('about-email-input').value.trim();
   aboutData.photo   = (document.getElementById('about-photo-url').value || '').trim();
+  var gjwInpVal = ((document.getElementById('about-gjw-input')||{}).value||'').trim();
+  if (gjwInpVal) { aboutData.gjwUrl = gjwInpVal.replace('https://','').replace('http://',''); }
+  refreshGjwDisplay();
   renderAbout();
 setTimeout(checkAboutOverflow, 100);
   closeAboutEdit();
