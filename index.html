@@ -2052,7 +2052,7 @@ function renderFollowers() {
   var allDates = enabled.filter(function(p){ return p.updatedAt; }).map(function(p){ return p.updatedAt; }).sort().reverse();
   var globalDate = allDates[0] ? new Date(allDates[0]).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
   if (updEl && hasAnyCount) updEl.textContent = globalDate ? 'Updated ' + globalDate : '';
-  document.getElementById('platform-followers-display').innerHTML = enabled.map(function(p) {
+  document.getElementById('platform-followers-display').innerHTML = enabled.filter(function(p){ return p.count && p.count !== '0'; }).map(function(p) {
     var def = PLATFORM_DEFS[p.id] || {};
     var icon = def.icon || ('<span style="font-size:9px;font-weight:800;color:#fff;background:#555;border-radius:4px;padding:2px 5px">' + (p.title||p.id||'').slice(0,3).toUpperCase() + '</span>');
     return '<a class="pf-item" href="' + (p.link||'#') + '" target="_blank">' +
